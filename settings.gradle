@@ -1,0 +1,4 @@
+//include ':circulartimerview'
+include ':app'
+rootProject.name = "iuncta-android"
+include ':ccp'

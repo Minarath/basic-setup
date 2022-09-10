@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "761871881421",
+    "project_id": "iuncta-e2194",
+    "storage_bucket": "iuncta-e2194.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761871881421:android:5029bf44d376cb6f680584",
+        "android_client_info": {
+          "package_name": "com.iunctainc.iuncta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761871881421-o2c0rtdegomokhuukgm468ek5gi84dls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iunctainc.iuncta",
+            "certificate_hash": "0ea5f026bd7b5575ba2a1fa8687a5d85a13eec3f"
+          }
+        },
+        {
+          "client_id": "761871881421-am4fkeskon4hvhiapb1rajg0l8fg94lj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKZN-KqewrQFFaaZVZVc-NUjXrYrFn7RY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761871881421-am4fkeskon4hvhiapb1rajg0l8fg94lj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "761871881421-dopphjt1n8gq3c00prt88ah4lbev2phg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.iunctainc.iuncta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

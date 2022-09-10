@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.iunctainc.iuncta.app.data.beans.UserProfileListRes" />
+
+        <variable
+            name="vm"
+            type="com.iunctainc.iuncta.app.ui.main.editprofile.EditProfileActivityVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolBarAccount"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{(v)->vm.onClick(v)}"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/editprofile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#B3B3B3"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBarAccount">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edProfileName">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidInsideStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="24dp" />
+
+
+                    <com.iunctainc.iuncta.app.util.glide.CircleImageView
+                        android:id="@+id/imgUser"
+                        image_url="@{bean.profilePicture.toString()}"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:onClick="@{(v)->vm.onClick(v)}"
+                        android:src="@drawable/profile_placeholder"
+                        app:layout_constraintEnd_toStartOf="@+id/guidInsideEnd"
+                        app:layout_constraintStart_toStartOf="@+id/guidInsideStart"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <EditText
+                        android:id="@+id/txtProfileNameHeading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_20sdp"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="@{bean.profileName.toString()}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="@id/guidInsideEnd"
+                        app:layout_constraintStart_toStartOf="@id/guidInsideStart"
+                        app:layout_constraintTop_toBottomOf="@+id/imgUser" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnFullNameHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp20"
+                        app:layout_constraintEnd_toEndOf="@id/guidInsideEnd"
+                        app:layout_constraintStart_toStartOf="@id/guidInsideStart"
+                        app:layout_constraintTop_toBottomOf="@+id/txtProfileNameHeading">
+
+
+                        <ImageView
+                            android:id="@+id/imgUserIcon"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:src="@drawable/ic_setting_account"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/txtFullname"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/full_name"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgUserIcon"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgUserIcon"
+                            app:layout_constraintTop_toTopOf="@+id/imgUserIcon" />
+
+
+                        <EditText
+                            android:id="@+id/edFullName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/enter_full_name"
+                            android:imeOptions="actionNext"
+                            android:inputType="textWebEmailAddress"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.fullName.toString()}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtFullname"
+                            app:layout_constraintTop_toBottomOf="@+id/imgUserIcon" />
+
+
+                        <ImageView
+                            android:id="@+id/edtAccountNewUserNameDivider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="@color/img_color"
+                            android:contentDescription="@string/app_name"
+                            app:layout_constraintTop_toBottomOf="@+id/edFullName" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnGenderHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        app:layout_constraintEnd_toEndOf="@+id/crnFullNameHolder"
+                        app:layout_constraintStart_toStartOf="@+id/crnFullNameHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/crnFullNameHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgUserIconGender"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:src="@drawable/gender"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtGenderTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:onClick="@{(v)->vm.onClick(v)}"
+                            android:text="@string/gender"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgUserIconGender"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgUserIconGender"
+                            app:layout_constraintTop_toTopOf="@+id/imgUserIconGender" />
+
+
+                        <TextView
+                            android:id="@+id/txtGender"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:onClick="@{(v)->vm.onClick(v)}"
+                            android:text="@string/unspecified"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtGenderTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/txtGenderTitle"
+                            tools:visibility="gone" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cnsGenderHolder"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/shape_gender"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imgUserIconGender"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/txtUnSpecified"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="1dp"
+                                android:background="@drawable/shape_gender_selected"
+                                android:fontFamily="@font/roboto_medium"
+                                android:gravity="center"
+                                android:onClick="@{(v)->vm.onClick(v)}"
+                                android:padding="@dimen/_4sdp"
+                                android:text="@string/unspecified"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/guid1"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.constraintlayout.widget.Guideline
+                                android:id="@+id/guid1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintGuide_percent="0.33" />
+
+
+                            <TextView
+                                android:id="@+id/txtmMle"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="1dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:gravity="center"
+                                android:onClick="@{(v)->vm.onClick(v)}"
+                                android:padding="@dimen/_2sdp"
+                                android:text="@string/male"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/guid2"
+                                app:layout_constraintStart_toStartOf="@+id/guid1"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <androidx.constraintlayout.widget.Guideline
+                                android:id="@+id/guid2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintGuide_percent="0.66" />
+
+                            <TextView
+                                android:id="@+id/txtFemale"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="1dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:gravity="center"
+                                android:onClick="@{(v)->vm.onClick(v)}"
+                                android:padding="@dimen/_2sdp"
+                                android:text="@string/female"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/guid2"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <ImageView
+                            android:id="@+id/imgGenderHolder"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="@color/img_color"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtGender" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnBirthDateHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@id/guidInsideEnd"
+                        app:layout_constraintStart_toStartOf="@id/guidInsideStart"
+                        app:layout_constraintTop_toBottomOf="@+id/crnGenderHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgiconBdate"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:src="@drawable/bday"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtBdateTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/your_birthday_date"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgiconBdate"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgiconBdate"
+                            app:layout_constraintTop_toTopOf="@+id/imgiconBdate" />
+
+
+                        <TextView
+                            android:id="@+id/txtBdate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:hint="00/00/0000"
+                            android:onClick="@{(v)->vm.onClick(v)}"
+                            android:textColor="@color/text_color_settings"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtBdateTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/imgiconBdate" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="@color/img_color"
+                            android:contentDescription="@string/app_name"
+                            app:layout_constraintTop_toBottomOf="@+id/txtBdate" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnCoutryCodeHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/crnBirthDateHolder"
+                        app:layout_constraintStart_toStartOf="@+id/crnBirthDateHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/crnBirthDateHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgCountryCode"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:src="@drawable/phone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtCountryCodeTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/country_code"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgCountryCode"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgCountryCode"
+                            app:layout_constraintTop_toTopOf="@+id/imgCountryCode" />
+
+
+                        <com.hbb20.CountryCodePicker
+                            android:id="@+id/txtCountryCode"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/text_color_settings"
+                            android:textSize="@dimen/_12sdp"
+                            app:ccp_showFlag="false"
+                            app:ccp_showNameCode="false"
+                            app:ccp_textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtCountryCodeTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/txtCountryCodeTitle" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/img_color"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtCountryCode" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnPhoneNumberHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/crnCoutryCodeHolder"
+                        app:layout_constraintStart_toStartOf="@+id/crnCoutryCodeHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/crnCoutryCodeHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgPhoneNumberHolder"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:src="@drawable/phone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtPhoneNumberHolder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Phone Number"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgPhoneNumberHolder"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgPhoneNumberHolder"
+                            app:layout_constraintTop_toTopOf="@+id/imgPhoneNumberHolder" />
+
+
+                        <EditText
+                            android:id="@+id/edPhoneNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/enter_phone_number"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.phoneNumber.toString()}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtPhoneNumberHolder"
+                            app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumberHolder" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/img_color"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/edPhoneNumber" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnEmailHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/crnPhoneNumberHolder"
+                        app:layout_constraintStart_toStartOf="@+id/crnPhoneNumberHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/crnPhoneNumberHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgEmailHolder"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:src="@drawable/email"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtEmailHolder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/email"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgEmailHolder"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgEmailHolder"
+                            app:layout_constraintTop_toTopOf="@+id/imgEmailHolder" />
+
+
+                        <EditText
+                            android:id="@+id/edEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/enter_email"
+                            android:imeOptions="actionNext"
+                            android:inputType="textWebEmailAddress"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.email.toString()}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtEmailHolder"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEmailHolder" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/img_color"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/edEmail" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnWebSiteHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/crnEmailHolder"
+                        app:layout_constraintStart_toStartOf="@+id/crnEmailHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/crnEmailHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgWebsiteHolder"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:src="@drawable/website"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtWebSite"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/website"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgWebsiteHolder"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgWebsiteHolder"
+                            app:layout_constraintTop_toTopOf="@+id/imgWebsiteHolder" />
+
+
+                        <EditText
+                            android:id="@+id/edWebsite"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/enter_website"
+                            android:imeOptions="actionDone"
+                            android:inputType="textWebEmailAddress"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.website.toString()}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtWebSite"
+                            app:layout_constraintTop_toBottomOf="@+id/txtWebSite" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/img_color"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/edWebsite" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnAddressHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@id/guidInsideEnd"
+                        app:layout_constraintStart_toStartOf="@id/guidInsideStart"
+                        app:layout_constraintTop_toBottomOf="@+id/crnWebSiteHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgAddress"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/location"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtAddress"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/address"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgAddress"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgAddress"
+                            app:layout_constraintTop_toTopOf="@+id/imgAddress" />
+
+
+                        <TextView
+                            android:id="@+id/edAddress"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/address_city_state_country"
+                            android:maxLines="1"
+                            android:onClick="@{(v)->vm.onClick(v)}"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.address.toString()}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                            app:layout_constraintStart_toStartOf="@+id/txtAddress"
+                            app:layout_constraintTop_toBottomOf="@+id/imgAddress"
+                            tools:ignore="Autofill" />
+
+
+                        <EditText
+                            android:id="@+id/edUnit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center"
+                            android:hint="@string/unit"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPostalAddress"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.unit.toString()}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/edAddress"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/edAddress"
+                            app:layout_constraintTop_toTopOf="@+id/edAddress"
+                            tools:ignore="Autofill" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="@color/img_color"
+                            android:contentDescription="@string/app_name"
+                            app:layout_constraintTop_toBottomOf="@+id/edAddress" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.63" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnCompanyHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/guidInsideEnd"
+                        app:layout_constraintStart_toStartOf="@+id/guidInsideStart"
+                        app:layout_constraintTop_toBottomOf="@+id/crnAddressHolder">
+
+                        <ImageView
+                            android:id="@+id/imgCompanyHolder"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/company"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtCompanyAndPositionTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/company"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgCompanyHolder"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgCompanyHolder"
+                            app:layout_constraintTop_toTopOf="@+id/imgCompanyHolder" />
+
+
+                        <EditText
+                            android:id="@+id/edCompanyPosition"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/company"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPostalAddress"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.companyName.toString()}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtCompanyAndPositionTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/txtCompanyAndPositionTitle"
+                            tools:ignore="Autofill" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="@color/img_color"
+                            android:contentDescription="@string/app_name"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/edCompanyPosition" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnPositionHolder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/crnFullNameHolder"
+                        app:layout_constraintStart_toStartOf="@+id/crnFullNameHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/crnCompanyHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgPositionHolder"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_badge"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtPositionHolder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/position"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgPositionHolder"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgPositionHolder"
+                            app:layout_constraintTop_toTopOf="@+id/imgPositionHolder" />
+
+
+                        <EditText
+                            android:id="@+id/edPosition"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/position"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPostalAddress"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.position}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtPositionHolder"
+                            app:layout_constraintTop_toBottomOf="@+id/txtPositionHolder"
+                            tools:ignore="Autofill" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:background="@color/img_color"
+                            android:contentDescription="@string/app_name"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/edPosition" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/crnPaymentholder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/crnGenderHolder"
+                        app:layout_constraintStart_toStartOf="@+id/crnGenderHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/crnPositionHolder">
+
+
+                        <ImageView
+                            android:id="@+id/imgHolder"
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/paymant"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/txtholder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/payments_options"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgHolder"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imgHolder"
+                            app:layout_constraintTop_toTopOf="@+id/imgHolder" />
+
+                    <!--    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recPaymentMethods"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rdaioCreditCard"
+                            tools:itemCount="1"
+                            tools:listitem="@layout/cell_payment_list" />
+-->
+                        <TextView
+                            android:id="@+id/txtAddPayment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:onClick="@{(v)->vm.onClick(v)}"
+                            android:text="@string/add_payment_method"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:drawableStartCompat="@drawable/ic_add"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txtholder"
+                            app:layout_constraintTop_toBottomOf="@+id/txtholder" />
+
+
+                        <RadioButton
+                            android:id="@+id/rdaioCreditCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_18sdp"
+                            android:buttonTint="@color/colorPrimary"
+                            android:checked="true"
+                            android:onClick="@{(v)->vm.onClick(v)}"
+                            android:text="@string/credit_card"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtAddPayment"
+                            tools:visibility="visible" />
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:background="@color/img_color"
+                            android:contentDescription="@string/app_name"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidCenter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5 " />
+
+                    <Button
+                        android:id="@+id/btnSave"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:background="@drawable/login_button"
+                        android:fontFamily="@font/roboto_regular"
+                        android:onClick="@{(v)->vm.onClick(v)}"
+                        android:text="@string/save"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/guidCenter"
+                        app:layout_constraintStart_toStartOf="@+id/guidInsideStart"
+                        app:layout_constraintTop_toBottomOf="@+id/crnPaymentholder"
+                        app:layout_constraintVertical_bias="0.0" />
+
+
+                    <Button
+                        android:id="@+id/btnDelete"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_60sdp"
+                        android:background="@drawable/login_button"
+                        android:fontFamily="@font/roboto_regular"
+                        android:onClick="@{(v)->vm.onClick(v)}"
+                        android:text="@string/delete"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+                        app:layout_constraintEnd_toStartOf="@+id/guidInsideEnd"
+                        app:layout_constraintStart_toStartOf="@+id/guidCenter"
+                        app:layout_constraintTop_toTopOf="@+id/btnSave" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidInsideEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.96" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

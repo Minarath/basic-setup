@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.iunctainc.iuncta.app.di.base.sheet.MediaSheet.ClickListener" />
+
+        <variable
+            name="item"
+            type="com.iunctainc.iuncta.app.di.base.sheet.MediaSheet.Item" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp5"
+        android:background="?selectableItemBackground"
+        android:onClick="@{()->callback.onClick(item)}"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:padding="@dimen/dp8"
+            app:simpleResourse="@{item.icon}" />
+
+        <TextView
+            style="@style/TextView.16x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
+            android:gravity="center"
+            android:text="@{item.text}"
+            android:textColor="@color/header"
+            android:textSize="@dimen/sp16" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp5"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timer_progress"
+            android:layout_marginLeft="@dimen/dp14"
+            android:fontFamily="@font/mark_pro"
+            android:text="0"
+            android:textColor="@color/header"
+            android:textSize="@dimen/sp14" />
+
+        <ProgressBar
+            android:id="@+id/timer_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp15"
+            android:layout_below="@+id/sl"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/custom_progress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timer_progress"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_toRightOf="@+id/tv_message"
+            android:fontFamily="@font/mark_pro"
+            android:text="%"
+            android:textColor="@color/header"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timer_progress"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp20"
+            android:fontFamily="@font/mark_pro"
+            android:text="100%"
+            android:textColor="@color/header"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/sl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:fontFamily="@font/mark_pro"
+            android:text="@string/plz_wait"
+            android:textColor="@color/header"
+            android:textSize="@dimen/sp18" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

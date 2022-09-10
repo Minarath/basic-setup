@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.iunctainc.iuncta.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="holder"
+            type="com.iunctainc.iuncta.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleViewHolder" />
+
+        <variable
+            name="bean"
+            type="com.iunctainc.iuncta.app.di.base.dialog.ListDialog.Item" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:onClick="@{(v)->callback.onItemClick(v,bean)}"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextView.14x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:text="@{bean.text}"
+            android:textColor="@color/header"
+            android:textSize="@dimen/sp16" />
+    </LinearLayout>
+</layout>

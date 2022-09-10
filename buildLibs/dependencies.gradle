@@ -1,0 +1,161 @@
+ext {
+    def libVersions = [
+            androidx         : '1.0.0',
+            material         : '1.1.0-alpha09',
+            multidex         : "2.0.1",
+            lifecycle        : '2.1.0',
+            retrofit2        : '2.5.0',
+            okhttp3          : '3.12.0',
+            rxjava2          : '2.2.7',
+            rxandroid2       : '2.1.1',
+            dagger2          : '2.29.1',
+            glide            : '4.9.0',
+            espresso         : '2.2.2',
+            jUnit            : '4.12',
+            /*firebase*/
+            firebaseMessaging: '17.3.3',
+            firebaseCore     : '15.0.0',
+            crashversion     : '2.9.7',
+            auth             : '19.3.0',
+            /*lottie*/
+            lottieVersion    : '2.7.0',
+            facebookversion  : '4.39.0',
+            playbase         : '16.0.1',
+            place            : '1.0.0',
+    ]
+
+    def supportAnnotationsExclude = {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    def glideExclude = {
+        exclude group: "com.android.support"
+    }
+
+    coreLibs = [
+
+            androidx    : [
+                    appCompat: [group: 'androidx.appcompat', name: 'appcompat', version: libVersions.androidx],
+                    multidex : [group: 'androidx.multidex', name: 'multidex', version: libVersions.multidex],
+                    desgin   : [group: 'com.google.android.material', name: 'material', version: libVersions.material]
+            ],
+            playservices: [
+                    playbase: [group: 'com.google.android.gms', name: 'play-services-auth', version: libVersions.playbase],
+                           location: [group: 'com.google.android.gms', name: 'play-services-location', version: libVersions.pslocation],
+                           place   : [group: 'com.google.android.libraries.places', name: 'places', version: libVersions.place],
+                           map     : [group: 'com.google.android.gms', name: 'play-services-maps', version: libVersions.pslocation],
+            ],
+            firebase    : [
+                    messaging: [group: 'com.google.firebase', name: 'firebase-messaging', version: libVersions.firebaseMessaging],
+                    core     : [group: 'com.google.firebase', name: 'firebase-core', version: libVersions.firebaseCore],
+                    crash    : [group: 'com.crashlytics.sdk.android', name: 'crashlytics', version: libVersions.crashversion],
+                    auth     : [group: 'com.google.firebase', name: 'firebase-auth', version: libVersions.auth]
+            ],
+            facebook    : [
+                    login         : [group: 'com.facebook.android', name: 'facebook-android-sdk', version: libVersions.facebookversion],
+            ],
+
+            dagger2     : [
+                    dagger2               : [group: 'com.google.dagger', name: 'dagger', version: libVersions.dagger2],
+                    dagger2Compiler       : [group: 'com.google.dagger', name: 'dagger-compiler', version: libVersions.dagger2],
+                    dagger2Android        : [group: 'com.google.dagger', name: 'dagger-android-support', version: libVersions.dagger2],
+                    dagger2AndroidCompiler: [group: 'com.google.dagger', name: 'dagger-android-processor', version: libVersions.dagger2],
+
+            ],
+            retrofit2   : [
+                    retrofit2              : [group: 'com.squareup.retrofit2', name: 'retrofit', version: libVersions.retrofit2],
+                    retrofit2mock          : [group: 'com.squareup.retrofit2', name: 'retrofit-mock', version: libVersions.retrofit2],
+                    retrofit2AdapterRxJava2: [group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: libVersions.retrofit2],
+                    retrofit2ConverterGson : [group: 'com.squareup.retrofit2', name: 'converter-gson', version: libVersions.retrofit2]
+            ],
+            okhttp3     : [
+                    loggingIntercepter: [group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: libVersions.okhttp3]
+            ],
+            rx          : [
+                    rxjava2   : [group: 'io.reactivex.rxjava2', name: 'rxjava', version: libVersions.rxjava2],
+                    rxandroid2: [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: libVersions.rxandroid2]
+
+            ],
+            lifeCycle   : [
+                    lifeCycleExtensions: [group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: libVersions.lifecycle],
+                    lifeCycleCompiler  : [group: 'androidx.lifecycle', name: 'lifecycle-common-java8', version: libVersions.lifecycle],
+                    lifeCycleRuntime   : [group: 'androidx.lifecycle', name: 'lifecycle-runtime', version: libVersions.lifecycle],
+                    lifeCycleVmKtx   : [group: 'androidx.lifecycle', name: 'lifecycle-viewmodel-ktx', version: libVersions.lifecycle],
+
+            ],
+            media       : [
+                    glide        : [group: 'com.github.bumptech.glide', name: 'glide', version: libVersions.glide],
+                    glideCompiler: [group: 'com.github.bumptech.glide', name: 'compiler', version: libVersions.glide]
+            ],
+            animation   : [lottie: [group: 'com.airbnb.android', name: 'lottie', version: libVersions.lottieVersion]],
+
+            test        : [
+                    jUnit   : [group: 'junit', name: 'junit', version: libVersions.jUnit],
+                    espresso: [group: 'com.android.support.test.espresso', name: 'espresso-core', version: libVersions.espresso]
+            ]
+    ]
+
+    coreDependencies = [
+            [configuration: "implementation", dependency: fileTree(dir: 'libs', include: ['*.jar'])],
+            /* google libs*/
+            [configuration: "implementation", dependency: coreLibs.playservices.playbase],
+            [configuration: "implementation", dependency: coreLibs.playservices.location],
+            [configuration: "implementation", dependency: coreLibs.playservices.place],
+            [configuration: "implementation", dependency: coreLibs.playservices.map],
+
+            // androidx
+            [configuration: "implementation", dependency: coreLibs.androidx.appCompat],
+            [configuration: "implementation", dependency: coreLibs.androidx.multidex],
+            [configuration: "implementation", dependency: coreLibs.androidx.desgin],
+
+            //firebase
+            [configuration: "implementation", dependency: coreLibs.firebase.core],
+            [configuration: "implementation", dependency: coreLibs.firebase.messaging],
+            [configuration: "implementation", dependency: coreLibs.firebase.crash],
+            [configuration: "implementation", dependency: coreLibs.firebase.auth],
+            // dagger2
+            [configuration: "implementation", dependency: coreLibs.dagger2.dagger2],
+            [configuration: "kapt", dependency: coreLibs.dagger2.dagger2Compiler],
+            [configuration: "implementation", dependency: coreLibs.dagger2.dagger2Android],
+            [configuration: "kapt", dependency: coreLibs.dagger2.dagger2AndroidCompiler],
+
+            // retrofit2
+            [configuration: "implementation", dependency: coreLibs.retrofit2.retrofit2],
+            [configuration: "implementation", dependency: coreLibs.retrofit2.retrofit2AdapterRxJava2],
+            [configuration: "implementation", dependency: coreLibs.retrofit2.retrofit2ConverterGson],
+            // okhttp3
+            [configuration: "implementation", dependency: coreLibs.okhttp3.loggingIntercepter],
+
+            // facebook
+            [configuration: "implementation", dependency: coreLibs.facebook.login],
+            // rx
+            [configuration: "implementation", dependency: coreLibs.rx.rxjava2],
+            [configuration: "implementation", dependency: coreLibs.rx.rxandroid2],
+
+            // lifecycle
+            [configuration: "implementation", dependency: coreLibs.lifeCycle.lifeCycleCompiler],
+            [configuration: "implementation", dependency: coreLibs.lifeCycle.lifeCycleExtensions],
+            [configuration: "implementation", dependency: coreLibs.lifeCycle.lifeCycleRuntime],
+            [configuration: "implementation", dependency: coreLibs.lifeCycle.lifeCycleVmKtx],
+            // media
+            [configuration: "implementation", dependency: coreLibs.media.glide, options: glideExclude],
+            [configuration: "kapt", dependency: coreLibs.media.glideCompiler],
+            [configuration: "testImplementation", dependency: coreLibs.test.jUnit],
+            [configuration: "androidTestImplementation", dependency: coreLibs.test.espresso, options: supportAnnotationsExclude],
+
+            // animation
+            [configuration: "implementation", dependency: coreLibs.animation.lottie]
+    ]
+
+    /*-------------------------------------------------------------Modules---------------------------------------------------------------------*/
+
+    //appModules
+
+    def plugins = [
+            android: 'com.android.application',
+            fabric : 'io.fabric',
+            google : 'com.google.gms.google-services'
+    ]
+
+    TopLevelPlugins = [plugins.android, plugins.fabric]
+    BottomLevelPlugins = [plugins.google]
+}

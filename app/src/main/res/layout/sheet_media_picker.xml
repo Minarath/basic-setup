@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.iunctainc.iuncta.app.di.base.sheet.MediaSheet.ClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp40"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/dp10"
+                android:onClick="@{()->callback.onCancel()}"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/ic_cancel"
+                android:tint="@color/pink_dark" />
+
+            <TextView
+                android:id="@+id/tv_header"
+                style="@style/TextView.16x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/header"
+                android:textSize="@dimen/sp20" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp15"
+            android:orientation="vertical" />
+    </LinearLayout>
+</layout>

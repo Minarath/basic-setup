@@ -1,0 +1,19 @@
+ext {
+    toolVersions = [
+            gradlePlugin: '3.0.1',
+            android     : [
+                    compileSdk: 30,
+            ]
+    ]
+
+    config = [
+            app: [
+                    applicationId: "com.iunctainc.iuncta.app",
+                    compileSdk   : 30,
+                    minSdk       : 21,
+                    targetSdk    : 30,
+                    versionCode  : 1,
+                    versionName  : '1.0'
+            ]
+    ]
+}

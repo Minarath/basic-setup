@@ -1,0 +1,57 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Iuncta</string>
+
+    <!--this is google place api. Do not change-->
+
+    <string name="facebook_app_id">589846928277704</string> <!--this is facebook login key -->
+    <!--this is facebook login key -->
+
+    <!-- Google test credentials -->
+
+    <string name="error_found">Error</string>
+    <string name="network_error">Network error</string>
+    <string name="plz_wait">Please wait</string>
+
+    <string name="back_online">Back online</string>
+    <string name="offline">Offline</string>
+
+    <!-- Main Activity -->
+
+    <!-- Dialog ask success -->
+    <string name="enter_email">Enter Email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string name="email">Email</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="unspecified">Unspecified</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="gender">Gender</string>
+    <string name="your_birthday_date">Your birthday date</string>
+    <string name="country_code">Country Code</string>
+    <string name="enter_website">Enter Website</string>
+    <string name="website">Website</string>
+    <string name="address">Address</string>
+    <string name="address_city_state_country">Address / City / State / Country</string>
+    <string name="payments_options">Payments Options</string>
+    <string name="add_payment_method">Add Payment Method</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="save">Save</string>
+    <string name="unit">Unit</string>
+
+    <string name="delete">Delete</string>
+    <string name="company">Company</string>
+    <string name="position">Position</string>
+
+
+    <!-- login generator-->
+
+    <string name="editprofile">Edit Profile</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+</resources>
