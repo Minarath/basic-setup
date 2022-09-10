@@ -14,10 +14,6 @@ object Constants {
         val key = ""
     }
 
-    object PlaceApi {
-        //        const val KEY = "AIzaSyBEJBrJz2GsQWFq7PksOubywpHsdGRomRw"
-        const val KEY = "AIzaSyCp4AoKOCqMtT2Md_BsYtjqx0kA_TKQopI"
-    }
 
     object Menu {
         const val HOME = "HOME"

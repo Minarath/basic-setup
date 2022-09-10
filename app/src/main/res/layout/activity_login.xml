@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.iunctainc.iuncta.app.data.beans.UserProfileListRes" />
+
+        <variable
+            name="vm"
+            type="com.iunctainc.iuncta.app.ui.main.login.LoginActivityVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="@+id/guidEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidStart"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/txtAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_400"
+            android:gravity="center"
+            android:text="@string/smartsales"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+            app:layout_constraintStart_toStartOf="@+id/imgLogo"
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_400"
+            android:gravity="center"
+            android:text="@string/welcome"
+            android:textColor="@color/dark_hint"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+            app:layout_constraintStart_toStartOf="@+id/imgLogo"
+            app:layout_constraintTop_toBottomOf="@+id/txtAppName" />
+
+
+        <FrameLayout
+            android:id="@+id/crdUsernameHolder"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_edittext"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+            app:layout_constraintStart_toEndOf="@+id/guidStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtWelcome">
+
+            <EditText
+                android:id="@+id/edUsername"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_300"
+                android:hint="@string/username"
+                android:text="jon121@gmail.com"
+                android:includeFontPadding="false"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_20sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/typing" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/ic_user" />
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/crdPasswordHolder"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/bg_edittext"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+            app:layout_constraintStart_toEndOf="@+id/guidStart"
+            app:layout_constraintTop_toBottomOf="@+id/crdUsernameHolder">
+
+            <EditText
+                android:id="@+id/edPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_300"
+                android:hint="@string/password"
+                android:text="password"
+                android:includeFontPadding="false"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_20sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/typing" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/ic_password" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/bg_button"
+            android:fontFamily="@font/poppins_400"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:onClick="@{(v)->vm.onClick(v)}"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidStart"
+            app:layout_constraintTop_toBottomOf="@+id/crdPasswordHolder" />
+
+
+        <TextView
+            android:id="@+id/txtForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:autoSizeMaxTextSize="@dimen/_20sdp"
+            android:fontFamily="@font/poppins_200"
+            android:gravity="center"
+            android:text="@string/forgot_password"
+            android:textColor="@color/dark_hint"
+            android:textSize="@dimen/_10sdp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+            app:layout_constraintStart_toEndOf="@+id/guidStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
+
+
+        <TextView
+            android:id="@+id/txtPowerby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_200"
+            android:gravity="center"
+            android:text="@string/powered_by"
+            android:textColor="@color/dark_hint"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toTopOf="@+id/txtSmartTech"
+            app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidStart" />
+
+
+        <TextView
+            android:id="@+id/txtSmartTech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:fontFamily="@font/poppins_400"
+            android:gravity="center"
+            android:text="@string/smartflix_technologies"
+            android:textColor="@color/dark_hint"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidStart" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

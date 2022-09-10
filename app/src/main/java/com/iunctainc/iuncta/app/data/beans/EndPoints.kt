@@ -3,6 +3,9 @@ package com.iunctainc.iuncta.app.data.beans
 object EndPoints {
 
     object Auth {
+        const val login = "login"
+
+
         const val register_psh = "register-for-push"
         const val delete_user_profile = "user-profile/{id}"
         const val updateProfile = "user-profile/update"
@@ -26,7 +29,6 @@ object EndPoints {
         const val change_username = "change-username"
         const val userInfor = "user-info"
         const val refresh_token = "refresh-token"
-        const val login = "login"
         const val register = "register"
         const val forgot = "forgotPassword"
         const val social_account = "social-account"

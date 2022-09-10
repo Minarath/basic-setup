@@ -1,5 +1,6 @@
 package com.iunctainc.iuncta.app.di.base.view;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -76,6 +77,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
         return super.onOptionsItemSelected(item);
     }
 
+    protected Dialog pDialog;
 
     protected final void showProgressDialog(@Nullable String msg) {
         if (progressDialog == null) {
@@ -89,6 +91,12 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
     protected final void showProgressDialog(@StringRes int msgResId) {
         showProgressDialog(getString(msgResId));
     }
+
+
+/*
+    protected final void showProgressDialog(@StringRes int msgResId) {
+        showProgressDialog(getString(msgResId));
+    }*/
 
 
     /**

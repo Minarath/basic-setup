@@ -3,11 +3,27 @@ package com.iunctainc.iuncta.app.data.repo.dash
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
 import com.iunctainc.iuncta.app.data.remote.helper.ApiCallback
+import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 
 interface DashRepo {
+    //Latest delete other when you are done
+    fun doLogin(email:String,password:String,apiCallback: ApiCallback<Response<SmartSaleLoginResponse>>)
+
+
+
+
+
+
+
+
+
+
+
+
+
     //setting screen
     fun getUserInfo(apiCallback: ApiCallback<Response<LoginResponse>>)
     fun changeUserName(req: RequestUsernameChange, apiCallback: ApiCallback<Response<NewCommanResponse>>)
@@ -46,5 +62,8 @@ interface DashRepo {
     fun registerPush(data: Map<String, String>, apiCallback:  ApiCallback<Response<ApiResponse<Any>>>)
     fun transactionHistory(apiCallback: ApiCallback<Response<TransactionHistoryResponse>>)
     fun appUpdaterAsync(data: Map<String, String>, apiCallback: ApiCallback<Response<AppData>>)
+
+
+
 
 }

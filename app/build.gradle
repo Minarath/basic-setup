@@ -14,7 +14,8 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId "com.iunctainc.iuncta"
+//        applicationId "com.iunctainc.iuncta"
+        applicationId "com.smart.sales"
         minSdkVersion 26
         targetSdkVersion 31
         versionCode 1
@@ -46,18 +47,18 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "EnableAnim", "true"
-            buildConfigField "String", "BASE_URL", '"http://134.209.145.75/iuncta-swiftui-web/api/v1/"'
+            buildConfigField "String", "BASE_URL", '"https://smartflixapps.com/sales_plus/api/v1/"'
         }
         debug {
             buildConfigField "boolean", "EnableAnim", "true"
-            buildConfigField "String", "BASE_URL", '"http://134.209.145.75/iuncta-swiftui-web/api/v1/"'
+            buildConfigField "String", "BASE_URL",'"https://smartflixapps.com/sales_plus/api/v1/"'
             signingConfig signingConfigs.debug
         }
     }
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "Iuncta_${buildDate}.apk"
+            outputFileName = "SmartSale${buildDate}.apk"
         }
     }
 
@@ -199,8 +200,10 @@ dependencies {
     implementation 'com.github.sparrow007:carouselrecyclerview:1.2.1'
 
     //firebsae
-    implementation platform('com.google.firebase:firebase-bom:28.3.1')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+//    implementation 'com.google.firebase:firebase-analytics-ktx'
+//    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+
 
 }

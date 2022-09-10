@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="typing">14sp</dimen>
+    <dimen name="btn_text_size">14sp</dimen>
+    <dimen name="header">16sp</dimen>
+
+
     <dimen name="dp1">@dimen/_1sdp</dimen>
     <dimen name="dp5">@dimen/_4sdp</dimen>
     <dimen name="dp8">@dimen/_8sdp</dimen>

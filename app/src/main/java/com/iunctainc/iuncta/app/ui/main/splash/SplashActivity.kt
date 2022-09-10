@@ -2,8 +2,6 @@ package com.iunctainc.iuncta.app.ui.main.splash
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import com.iunctainc.iuncta.app.R
@@ -12,8 +10,11 @@ import com.iunctainc.iuncta.app.di.base.MyApplication
 import com.iunctainc.iuncta.app.di.base.view.AppActivity
 import java.util.*
 import android.app.NotificationManager
+import com.iunctainc.iuncta.app.data.beans.Constants
 import com.iunctainc.iuncta.app.ui.main.editprofile.EditProfileActivity
-import com.iunctainc.iuncta.app.ui.welcome.section.splash.SplashActivityVM
+import com.iunctainc.iuncta.app.ui.main.home.MainActivity
+import com.iunctainc.iuncta.app.ui.main.login.LoginActivity
+import com.pixplicity.easyprefs.library.Prefs
 
 
 class SplashActivity : AppActivity<ActivitySplashBinding, SplashActivityVM>() {
@@ -43,15 +44,18 @@ class SplashActivity : AppActivity<ActivitySplashBinding, SplashActivityVM>() {
         })
 
         vm.obrNext.observe(this, Observer {
-            intent = EditProfileActivity().newIntent(this@SplashActivity)
+            intent = Intent()
+            intent = if (Prefs.getBoolean(Constants.PrefsKeys.ISLOGIN, false)) {
+                MainActivity().newIntent(this@SplashActivity)
+            } else {
+                LoginActivity().newIntent(this@SplashActivity)
+            }
             startNewActivity(intent, true)
-
         })
     }
 
     override fun onStart() {
         super.onStart()
-
         viewModel!!.nextScreen()
     }
 

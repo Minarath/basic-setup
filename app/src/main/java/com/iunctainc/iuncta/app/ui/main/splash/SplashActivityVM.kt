@@ -1,4 +1,4 @@
-package com.iunctainc.iuncta.app.ui.welcome.section.splash
+package com.iunctainc.iuncta.app.ui.main.splash
 
 import com.iunctainc.iuncta.app.di.base.viewmodel.BaseViewModel
 import com.iunctainc.iuncta.app.util.event.SingleLiveEvent

@@ -1,135 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
-  </component>
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/back_round_corner1.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/back_round_corner2.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/bg_rounded_15.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/bg_rounded_lilac.xml" value="0.36512820512820515" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/bg_zircon.xml" value="0.36512820512820515" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/circle.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/ic_copy.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/ic_profile.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/ic_visa.xml" value="0.36512820512820515" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/profile.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/profile_placeholder.xml" value="0.36512820512820515" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/progress.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/drawable/signup_border.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_account.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_app_select.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_authentication.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_createnewprofile.xml" value="0.34923076923076923" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_home.xml" value="0.34923076923076923" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_login.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_notification_detail.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_register.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_security.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/activity_verify_number.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/cell_associate_list.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/cell_help_type.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/cell_payment_item.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/cell_payment_list.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/cell_profile.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/cell_user_profile_list.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/credid_card_dialog.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/fragment_home.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/fragment_notification.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/fragment_profile.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/fragment_setting.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/fragment_token.xml" value="0.34923076923076923" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/fragment_wallet.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/layout_create_new_profile_personal_page.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/layout_key.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/layout_token.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_app_list.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_media.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_notification.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_pick_list.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_request_details.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_token_list.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_wallet.xml" value="0.3546875" />
-        <entry key="..\:/Users/iRoid/AndroidStudioProjects/iuncta/app/src/main/res/layout/row_wallet_list.xml" value="0.3546875" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/add.xml" value="0.37604166666666666" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/circle.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/company.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/email.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_bottom_line.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_cancel.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_home.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_home_fill.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_logout.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_notification.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_notification_1.xml" value="0.21354166666666666" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_notification_icon.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_notificato_with_round.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/paymant.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/phone.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_account.xml" value="0.1" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_app_select.xml" value="0.35989583333333336" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_editprofile.xml" value="0.25" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_home.xml" value="0.22871376811594202" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_splash.xml" value="0.35989583333333336" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/cell_accociaate_apps.xml" value="0.3546875" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/cell_payment_list.xml" value="0.35989583333333336" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/cell_profile.xml" value="0.3546875" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/custom_toast.xml" value="0.35989583333333336" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/dialog_base_alert.xml" value="0.18" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/dialog_pick_list.xml" value="0.14114583333333333" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/dialog_progress.xml" value="0.35989583333333336" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/loader.xml" value="0.28541666666666665" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/row_media.xml" value="0.20104166666666667" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/row_pick_list.xml" value="0.14114583333333333" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/row_request_details.xml" value="0.35989583333333336" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/row_wallet.xml" value="0.1" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/row_wallet_list.xml" value="0.1" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/spinner_item.xml" value="0.28541666666666665" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37083333333333335" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.37083333333333335" />
-        <entry key="app/src/main/res/drawable/ic_fill_star.xml" value="0.1388888888888889" />
-        <entry key="app/src/main/res/drawable/top_shape_profile_list.xml" value="0.20230263157894737" />
-        <entry key="app/src/main/res/layout/activity_account.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_createnewprofile.xml" value="0.23029315960912053" />
-        <entry key="app/src/main/res/layout/activity_editprofile.xml" value="0.23029315960912053" />
-        <entry key="app/src/main/res/layout/activity_google_place_api.xml" value="0.2325657894736842" />
-        <entry key="app/src/main/res/layout/activity_help.xml" value="0.3806949806949807" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.21644736842105264" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2325657894736842" />
-        <entry key="app/src/main/res/layout/activity_notification_detail.xml" value="0.2325657894736842" />
-        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.14342105263157895" />
-        <entry key="app/src/main/res/layout/cell_accociaate_apps.xml" value="0.23029315960912053" />
-        <entry key="app/src/main/res/layout/cell_payment_item.xml" value="0.16282894736842105" />
-        <entry key="app/src/main/res/layout/cell_payment_list.xml" value="0.2325657894736842" />
-        <entry key="app/src/main/res/layout/cell_user_profile_list.xml" value="0.23029315960912053" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.10592105263157894" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2325657894736842" />
-        <entry key="app/src/main/res/layout/fragment_token.xml" value="0.2325657894736842" />
-        <entry key="app/src/main/res/layout/layout_create_new_profile_detail_page.xml" value="0.23029315960912053" />
-        <entry key="app/src/main/res/layout/layout_create_new_profile_personal_page.xml" value="0.23029315960912053" />
-        <entry key="app/src/main/res/layout/layout_key.xml" value="0.2325657894736842" />
-        <entry key="app/src/main/res/layout/textview.xml" value="0.14703947368421053" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.24276315789473685" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.24276315789473685" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/blue_strock_dashboard.xml" value="0.3212962962962963" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/ic_add.xml" value="0.37604166666666666" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_login.xml" value="0.35989583333333336" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_splash.xml" value="0.5" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/loader.xml" value="0.1578125" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/progress_dialog.xml" value="0.35989583333333336" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2518518518518518" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2518518518518518" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.3671875" />
-      </ProjectState>
-    </option>
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

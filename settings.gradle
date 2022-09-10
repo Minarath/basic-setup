@@ -1,4 +1,4 @@
 //include ':circulartimerview'
 include ':app'
-rootProject.name = "iuncta-android"
+rootProject.name = "smart-sale"
 include ':ccp'

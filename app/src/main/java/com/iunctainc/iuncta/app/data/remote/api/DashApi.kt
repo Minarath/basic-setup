@@ -2,6 +2,7 @@ package com.iunctainc.iuncta.app.data.remote.api
 
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
+import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -11,6 +12,10 @@ import retrofit2.http.*
 interface DashApi {
     @GET(EndPoints.Auth.userInfor)
     fun getUserInfoAsync(): Deferred<Response<LoginResponse>>
+
+    @FormUrlEncoded
+    @POST(EndPoints.Auth.login)
+    fun doLoginAsync(@Field("email") email:String,@Field("password") password:String): Deferred<Response<SmartSaleLoginResponse>>
 
     @POST(EndPoints.Auth.change_username)
     fun changeUserNameAsync(@Body user: RequestUsernameChange): Deferred<Response<NewCommanResponse>>
@@ -119,22 +124,22 @@ interface DashApi {
     fun deleteUserProfileAsync(@Path("id") id: String): Deferred<Response<NewCommanResponse>>
 
     @GET(EndPoints.Auth.notification_list)
-    fun getNotificationListAsync() : Deferred<Response<NotificationListResponse>>
+    fun getNotificationListAsync(): Deferred<Response<NotificationListResponse>>
 
     @POST(EndPoints.Auth.is_read_notification)
-    fun isReadNotificationAsync(@Body data: Map<String, String>) : Deferred<Response<NewCommanResponse>>
+    fun isReadNotificationAsync(@Body data: Map<String, String>): Deferred<Response<NewCommanResponse>>
 
     @POST(EndPoints.Auth.approve_request)
-    fun approveRequestAsync(@Body data: Map<String, String>) : Deferred<Response<ApproVeResponse>>
+    fun approveRequestAsync(@Body data: Map<String, String>): Deferred<Response<ApproVeResponse>>
 
     @POST(EndPoints.Auth.register_psh)
     fun registerPushAsync(@Body data: Map<String, String>): Deferred<Response<ApiResponse<Any>>>
 
     @GET(EndPoints.Auth.transaction_history)
-    fun transactionHistoryAsync() : Deferred<Response<TransactionHistoryResponse>>
+    fun transactionHistoryAsync(): Deferred<Response<TransactionHistoryResponse>>
 
     @POST(EndPoints.Auth.appUpdater)
-    fun appUpdaterAsync(@Body data: Map<String, String>) : Deferred<Response<AppData>>
+    fun appUpdaterAsync(@Body data: Map<String, String>): Deferred<Response<AppData>>
 
 }
 
