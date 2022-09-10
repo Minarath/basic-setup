@@ -7,6 +7,7 @@ import com.iunctainc.iuncta.app.data.beans.base.SimpleApiResponse
 import com.iunctainc.iuncta.app.data.local.SharedPref
 import com.iunctainc.iuncta.app.data.remote.api.DashApi
 import com.iunctainc.iuncta.app.data.remote.helper.ApiCallback
+import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ import okhttp3.RequestBody
 import retrofit2.Response
 
 class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedPref) : DashRepo {
+
     override fun doLogin(email: String, password: String, apiCallback: ApiCallback<Response<SmartSaleLoginResponse>>) {
         apiCallback.onLoading()
         CoroutineScope(Dispatchers.IO).launch {
@@ -27,6 +29,37 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
                     if (response.isSuccessful) {
                         apiCallback.onSuccess(response)
                     } else {
+                        val apiRes = SimpleApiResponse()
+                        val apiResponse: SimpleApiResponse? = Gson().fromJson(response.errorBody()?.string(), apiRes::class.java)
+                        apiResponse?.message?.let {
+                            apiCallback.onFailed(it)
+                        }
+                            ?: let { apiCallback.onFailed("Something went wrong") }
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        apiCallback.onErrorThrow(e)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun getCategory1(company_id: String, apiCallback: ApiCallback<Response<CategoryResponse>>) {
+        apiCallback.onLoading()
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = dashApi.getCategory1Async(company_id)
+            withContext(Dispatchers.Main) {
+                try {
+                    val response = request.await()
+                    if (response.isSuccessful) {
+                        apiCallback.onSuccess(response)
+                    }
+                    else if(response.code()==Constants.NetworkCode.UNAUTHORIZED){
+
+                    }
+                    else {
                         val apiRes = SimpleApiResponse()
                         val apiResponse: SimpleApiResponse? = Gson().fromJson(response.errorBody()?.string(), apiRes::class.java)
                         apiResponse?.message?.let {

@@ -1,7 +1,7 @@
 package com.iunctainc.iuncta.app.di.component;
 
 
-import com.iunctainc.iuncta.app.di.module.ApiModule;
+ import com.iunctainc.iuncta.app.di.module.ApiModule;
 import com.iunctainc.iuncta.app.di.module.AppModule;
 import com.iunctainc.iuncta.app.di.module.LocalModule;
 import com.iunctainc.iuncta.app.di.module.ManagerModule;
@@ -29,7 +29,7 @@ import dagger.android.support.DaggerApplication;
         NetworkModule.class,
         SystemModule.class,
         AndroidComponentsModule.class,
-        ViewModelModule.class,
+        ViewModelModule.class
 
 
 })
@@ -37,7 +37,6 @@ public interface AppComponent extends AndroidInjector<DaggerApplication> {
 
     @Component.Builder
     abstract class Builder extends AndroidInjector.Builder<DaggerApplication> {
-
     }
 
 

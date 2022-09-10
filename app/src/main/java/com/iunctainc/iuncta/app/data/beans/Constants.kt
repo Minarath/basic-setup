@@ -8,6 +8,9 @@ object Constants {
         val ANDROID_KEY = "android"
     }
 
+    object NetworkCode {
+        val UNAUTHORIZED = 401
+    }
 
     object Token {
         val tokenList = ArrayList<String>()

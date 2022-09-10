@@ -62,6 +62,8 @@
     <!-- login generator-->
 
     <string name="editprofile">Edit Profile</string>
+    <string name="item_name">Item Name</string>
+    <string name="submit">Submit</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

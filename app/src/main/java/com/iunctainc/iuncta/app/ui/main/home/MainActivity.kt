@@ -15,6 +15,7 @@ import com.iunctainc.iuncta.app.databinding.ActivityEditprofileBinding
 import com.iunctainc.iuncta.app.databinding.ActivityLoginBinding
 import com.iunctainc.iuncta.app.databinding.ActivityMainBinding
 import com.iunctainc.iuncta.app.di.base.view.AppActivity
+import com.iunctainc.iuncta.app.ui.main.additem.AddItemActivity
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import com.iunctainc.iuncta.app.util.event.SingleRequestEvent
 import com.iunctainc.iuncta.app.util.showToast
@@ -36,9 +37,12 @@ class MainActivity : AppActivity<ActivityMainBinding, MainActivityVM>() {
     override fun subscribeToEvents(vm: MainActivityVM) {
         vm.obrClick.observe(this, Observer { view ->
             when (view.id) {
-                R.id.txtLogin -> {
+                R.id.imgAddNewItem -> {
+                    val intent=AddItemActivity().newIntent(this@MainActivity)
+                    startNewActivity(intent, false)
                 }
             }
         })
+        Log.e(">>>>", "subscribeToEvents: "+getData().data)
     }
 }

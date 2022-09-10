@@ -10,13 +10,7 @@ class AuthorizationInterceptor : Interceptor {
 
         val mainResponse = chain.proceed(chain.request())
         if (mainResponse.code == 401) {
-            if (!chain.request().url.toString().contains("login")) {
-                if (MyApplication.instance?.isAuthError() == true) {
-                    MyApplication.instance?.restartApp()
-                } else {
-//                    MyApplication.instance?.refreshToken()
-                }
-            }
+            MyApplication.instance?.restartApp()
         }
         return mainResponse
     }

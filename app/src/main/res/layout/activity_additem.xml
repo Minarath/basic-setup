@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.iunctainc.iuncta.app.data.beans.UserProfileListRes" />
+
+        <variable
+            name="vm"
+            type="com.iunctainc.iuncta.app.ui.main.additem.AddItemActivityVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cnsToolbarHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_400"
+                android:gravity="center"
+                android:text="Add Item"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:onClick="@{(v)->vm.onClick(v)}"
+                android:src="@drawable/img_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@+id/txtSubmit"
+            app:layout_constraintEnd_toEndOf="@id/guidEnd"
+            app:layout_constraintStart_toStartOf="@id/guidStart"
+            app:layout_constraintTop_toBottomOf="@+id/cnsToolbarHolder">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginHorizontal="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_edittext"
+                    android:elevation="@dimen/_2sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+                    app:layout_constraintStart_toEndOf="@+id/guidStart"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWelcome">
+
+                    <EditText
+                        android:id="@+id/edItemName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_300"
+                        android:hint="@string/item_name"
+                        android:includeFontPadding="false"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/typing" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginHorizontal="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_edittext"
+                    android:elevation="@dimen/_2sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+                    app:layout_constraintStart_toEndOf="@+id/guidStart"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWelcome">
+
+                    <EditText
+                        android:id="@+id/edBarcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_35sdp"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_300"
+                        android:hint="Item Barcode"
+                        android:includeFontPadding="false"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/typing" />
+
+                    <ImageView
+                        android:id="@+id/imgBarcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:onClick="@{(v)->vm.onClick(v)}"
+                        android:src="@drawable/img_barcode" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginHorizontal="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_edittext"
+                    android:elevation="@dimen/_2sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+                    app:layout_constraintStart_toEndOf="@+id/guidStart"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWelcome">
+
+                    <EditText
+                        android:id="@+id/edItemCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_35sdp"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_300"
+                        android:hint="Item Category"
+                        android:includeFontPadding="false"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/typing" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/img_dropdown" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginHorizontal="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/gray_strock"
+                    android:elevation="@dimen/_2sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="@+id/guidEnd"
+                    app:layout_constraintStart_toEndOf="@+id/guidStart"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWelcome">
+
+
+                    <TextView
+                        android:id="@+id/txtStock"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/img_left_side"
+                        android:fontFamily="@font/poppins_300"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:onClick="@{(v)->vm.onClick(v)}"
+                        android:text="Stock"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_300"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:onClick="@{(v)->vm.onClick(v)}"
+                        android:text="pricing"
+                        android:textAllCaps="true"
+                        android:textColor="@color/text_color" />
+
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/include_stock"
+                    layout="@layout/include_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp" />
+
+                <include
+                    android:id="@+id/include_pricing"
+                    layout="@layout/include_pricing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <TextView
+            android:id="@+id/txtSubmit"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/bg_button"
+            android:fontFamily="@font/poppins_400"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:onClick="@{(v)->vm.onClick(v)}"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guidEnd"
+            app:layout_constraintStart_toStartOf="@id/guidStart" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

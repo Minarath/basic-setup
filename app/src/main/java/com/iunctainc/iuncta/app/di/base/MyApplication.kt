@@ -14,6 +14,7 @@ import com.iunctainc.iuncta.app.R
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.repo.welcome.WelcomeRepo
 import com.iunctainc.iuncta.app.di.component.DaggerAppComponent
+import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import com.iunctainc.iuncta.app.ui.main.splash.SplashActivity
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
@@ -66,7 +67,8 @@ class MyApplication : DaggerApplication() {
             Prefs.clear()
             val intent: Intent = SplashActivity().newIntent(context!!)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            context?.startActivity(intent)
+          //  context?.startActivity(intent)
+            //todo bhagirath remove once uthorization error done
         }
     }
 
@@ -96,7 +98,7 @@ class MyApplication : DaggerApplication() {
     }
 
     fun getToken(): String {
-        return "Bearer ${getUserAuthentication()?.accessToken}"
+        return "Bearer ${getUserData().data?.auth?.accessToken}"
     }
 
     fun setAuthRepo(welcomeRepo: WelcomeRepo) {
@@ -139,8 +141,8 @@ class MyApplication : DaggerApplication() {
     }
 
 
-    fun getUserData(): Data {
-        return Gson().fromJson(Prefs.getString(Constants.PrefsKeys.USER_DATA, ""), object : TypeToken<Data>() {}.type)
+    fun getUserData(): SmartSaleLoginResponse {
+        return Gson().fromJson(Prefs.getString(Constants.PrefsKeys.USER_DATA, ""), object : TypeToken<SmartSaleLoginResponse>() {}.type)
     }
 
 

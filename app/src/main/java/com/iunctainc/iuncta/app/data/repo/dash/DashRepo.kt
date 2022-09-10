@@ -3,6 +3,7 @@ package com.iunctainc.iuncta.app.data.repo.dash
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
 import com.iunctainc.iuncta.app.data.remote.helper.ApiCallback
+import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -11,6 +12,7 @@ import retrofit2.Response
 interface DashRepo {
     //Latest delete other when you are done
     fun doLogin(email:String,password:String,apiCallback: ApiCallback<Response<SmartSaleLoginResponse>>)
+    fun getCategory1(company_id:String,apiCallback: ApiCallback<Response<CategoryResponse>>)
 
 
 

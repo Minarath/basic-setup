@@ -1,5 +1,6 @@
 package com.iunctainc.iuncta.app.data.remote.intersepter
 
+import android.util.Log
 import com.iunctainc.iuncta.app.di.base.MyApplication
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -15,7 +16,7 @@ class RequestInterceptor : Interceptor {
         try {
             builder.addHeader("Authorization", MyApplication.instance?.getToken().toString())
         } catch (e: Exception) {
-
+            Log.e(">>>", "intercept: token exceptions" )
         }
         val response = chain.proceed(builder.build())
 

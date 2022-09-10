@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:textAllCaps="true"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -43,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                android:src="@drawable/img_back"
+                android:src="@drawable/img_menu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,6 +98,8 @@
         </androidx.core.widget.NestedScrollView>
 
         <ImageView
+            android:id="@+id/imgAddNewItem"
+            android:onClick="@{(v)->vm.onClick(v)}"
             android:layout_margin="@dimen/_4sdp"
             android:layout_width="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

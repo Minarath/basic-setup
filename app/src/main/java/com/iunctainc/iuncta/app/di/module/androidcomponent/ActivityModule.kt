@@ -1,5 +1,6 @@
 package com.iunctainc.iuncta.app.di.module.androidcomponent
 
+import com.iunctainc.iuncta.app.ui.main.additem.AddItemActivity
 import com.iunctainc.iuncta.app.ui.main.editprofile.EditProfileActivity
 import com.iunctainc.iuncta.app.ui.main.home.MainActivity
 import com.iunctainc.iuncta.app.ui.main.login.LoginActivity
@@ -13,7 +14,6 @@ abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract fun EditProfileActivity(): EditProfileActivity
 
-
     @ContributesAndroidInjector
     abstract fun LoginActivity(): LoginActivity
 
@@ -22,5 +22,8 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     abstract fun SplashActivity(): SplashActivity
+
+    @ContributesAndroidInjector
+    abstract fun AddItemActivity(): AddItemActivity
 
 }

@@ -2,6 +2,7 @@ package com.iunctainc.iuncta.app.data.remote.api
 
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
+import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
@@ -10,12 +11,18 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface DashApi {
-    @GET(EndPoints.Auth.userInfor)
-    fun getUserInfoAsync(): Deferred<Response<LoginResponse>>
 
     @FormUrlEncoded
     @POST(EndPoints.Auth.login)
-    fun doLoginAsync(@Field("email") email:String,@Field("password") password:String): Deferred<Response<SmartSaleLoginResponse>>
+    fun doLoginAsync(@Field("email") email: String, @Field("password") password: String): Deferred<Response<SmartSaleLoginResponse>>
+
+    @GET(EndPoints.Auth.getCategory1)
+    fun getCategory1Async(@Query("company_id") companyId: String): Deferred<Response<CategoryResponse>>
+
+
+    @GET(EndPoints.Auth.userInfor)
+    fun getUserInfoAsync(): Deferred<Response<LoginResponse>>
+
 
     @POST(EndPoints.Auth.change_username)
     fun changeUserNameAsync(@Body user: RequestUsernameChange): Deferred<Response<NewCommanResponse>>

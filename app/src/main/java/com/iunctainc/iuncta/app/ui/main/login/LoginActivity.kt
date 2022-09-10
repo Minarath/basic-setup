@@ -72,7 +72,7 @@ class LoginActivity : AppActivity<ActivityLoginBinding, LoginActivityVM>() {
     private fun saveDataAndRedirectToMainActivity(data: SmartSaleLoginResponse?) {
         Prefs.putBoolean(Constants.PrefsKeys.ISLOGIN, true)
         Prefs.putString(Constants.PrefsKeys.USER_DATA, Gson().toJson(data))
-       val intent=MainActivity().newIntent(this@LoginActivity)
+        val intent = MainActivity().newIntent(this@LoginActivity)
         startNewActivity(intent, true)
 
     }

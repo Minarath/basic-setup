@@ -1,29 +1,33 @@
 package com.iunctainc.iuncta.app.di.module
 
+import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.iunctainc.iuncta.app.BuildConfig
+import com.iunctainc.iuncta.app.data.beans.Constants
 import com.iunctainc.iuncta.app.data.remote.helper.NetworkErrorHandler
 import com.iunctainc.iuncta.app.data.remote.intersepter.AuthorizationInterceptor
 import com.iunctainc.iuncta.app.data.remote.intersepter.RequestInterceptor
 import com.iunctainc.iuncta.app.di.qualifier.ApiDateFormat
 import com.iunctainc.iuncta.app.di.qualifier.ApiEndpoint
+import com.iunctainc.iuncta.app.ui.main.login.LoginActivity
 import com.iunctainc.iuncta.app.util.misc.ConnectionHandler
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.android.support.DaggerApplication
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-
+import kotlin.coroutines.coroutineContext
 
 @Module
 class NetworkModule {

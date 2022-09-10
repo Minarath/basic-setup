@@ -10,6 +10,7 @@ import com.iunctainc.iuncta.app.data.beans.Data
 import com.iunctainc.iuncta.app.data.beans.connection.ConnectionBean
 import com.iunctainc.iuncta.app.data.local.SharedPref
 import com.iunctainc.iuncta.app.di.base.viewmodel.BaseViewModel
+import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import com.iunctainc.iuncta.app.util.event.SingleMessageEvent.MessageObserver
 import com.iunctainc.iuncta.app.util.misc.ConnectionHandler
 import com.iunctainc.iuncta.app.util.view.MessageUtils
@@ -93,7 +94,7 @@ abstract class AppActivity<B : ViewDataBinding?, V : BaseViewModel?> : BaseActiv
         super.onBackPressed(true)
     }
 
-    public fun getData(): Data {
-        return Gson().fromJson(Prefs.getString(Constants.PrefsKeys.USER_DATA, ""), Data::class.java)
+    public fun getData(): SmartSaleLoginResponse {
+       return Gson().fromJson(Prefs.getString(Constants.PrefsKeys.USER_DATA, ""), SmartSaleLoginResponse::class.java)
     }
 }
