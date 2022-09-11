@@ -7,7 +7,9 @@ import com.iunctainc.iuncta.app.data.beans.base.SimpleApiResponse
 import com.iunctainc.iuncta.app.data.local.SharedPref
 import com.iunctainc.iuncta.app.data.remote.api.DashApi
 import com.iunctainc.iuncta.app.data.remote.helper.ApiCallback
+import com.iunctainc.iuncta.app.ui.main.models.AddItemResponse
 import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
+import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +24,7 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
     override fun doLogin(email: String, password: String, apiCallback: ApiCallback<Response<SmartSaleLoginResponse>>) {
         apiCallback.onLoading()
         CoroutineScope(Dispatchers.IO).launch {
-            val request = dashApi.doLoginAsync(email,password)
+            val request = dashApi.doLoginAsync(email, password)
             withContext(Dispatchers.Main) {
                 try {
                     val response = request.await()
@@ -55,11 +57,67 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
                     val response = request.await()
                     if (response.isSuccessful) {
                         apiCallback.onSuccess(response)
-                    }
-                    else if(response.code()==Constants.NetworkCode.UNAUTHORIZED){
+                    } else if (response.code() == Constants.NetworkCode.UNAUTHORIZED) {
 
+                    } else {
+                        val apiRes = SimpleApiResponse()
+                        val apiResponse: SimpleApiResponse? = Gson().fromJson(response.errorBody()?.string(), apiRes::class.java)
+                        apiResponse?.message?.let {
+                            apiCallback.onFailed(it)
+                        }
+                            ?: let { apiCallback.onFailed("Something went wrong") }
                     }
-                    else {
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        apiCallback.onErrorThrow(e)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun addItemAsync(company_id: Int, sales_price: Int, cost_price: Int, opg_stock: Int, vat: Int, discount: Int, category1_id: Int, category2_id: Int?, category3_id: Int?, name: String, barcode: String, apiCallback: ApiCallback<Response<AddItemResponse>>) {
+        apiCallback.onLoading()
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = dashApi.addItemAsync(company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode)
+            withContext(Dispatchers.Main) {
+                try {
+                    val response = request.await()
+                    if (response.isSuccessful) {
+                        apiCallback.onSuccess(response)
+                    } else if (response.code() == Constants.NetworkCode.UNAUTHORIZED) {
+
+                    } else {
+                        val apiRes = SimpleApiResponse()
+                        val apiResponse: SimpleApiResponse? = Gson().fromJson(response.errorBody()?.string(), apiRes::class.java)
+                        apiResponse?.message?.let {
+                            apiCallback.onFailed(it)
+                        }
+                            ?: let { apiCallback.onFailed("Something went wrong") }
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        apiCallback.onErrorThrow(e)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun getItemList(company_id: String, apiCallback: ApiCallback<Response<ItemsListResponse>>) {
+        apiCallback.onLoading()
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = dashApi.getItemListAsync(company_id)
+            withContext(Dispatchers.Main) {
+                try {
+                    val response = request.await()
+                    if (response.isSuccessful) {
+                        apiCallback.onSuccess(response)
+                    } else if (response.code() == Constants.NetworkCode.UNAUTHORIZED) {
+
+                    } else {
                         val apiRes = SimpleApiResponse()
                         val apiResponse: SimpleApiResponse? = Gson().fromJson(response.errorBody()?.string(), apiRes::class.java)
                         apiResponse?.message?.let {

@@ -2,7 +2,9 @@ package com.iunctainc.iuncta.app.data.remote.api
 
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
+import com.iunctainc.iuncta.app.ui.main.models.AddItemResponse
 import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
+import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
@@ -18,6 +20,28 @@ interface DashApi {
 
     @GET(EndPoints.Auth.getCategory1)
     fun getCategory1Async(@Query("company_id") companyId: String): Deferred<Response<CategoryResponse>>
+
+    @GET(EndPoints.Auth.addItems)
+    fun getItemListAsync(@Query("company_id") companyId: String): Deferred<Response<ItemsListResponse>>
+
+
+    @FormUrlEncoded
+    @POST(EndPoints.Auth.addItems)
+    fun addItemAsync(
+        @Field("company_id") company_id: Int,
+        @Field("sales_price") sales_price: Int,
+        @Field("cost_price") cost_price: Int,
+        @Field("opg_stock") opg_stock: Int,
+        @Field("vat") vat: Int,
+        @Field("discount") discount: Int,
+        @Field("category1_id") category1_id: Int,
+        @Field("category2_id") category2_id: Int?,
+        @Field("category3_id") category3_id: Int?,
+        @Field("name") name: String,
+        @Field("barcode") barcode: String,
+    ): Deferred<Response<AddItemResponse>>
+
+
 
 
     @GET(EndPoints.Auth.userInfor)

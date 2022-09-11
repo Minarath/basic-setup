@@ -38,4 +38,5 @@
     <color name="selected_color">#00AFEF</color>
     <color name="img_color">#C6C7CC</color>
     <color name="gray_color">#EBEAEB</color>
+    <color name="green_border_color">#92AFA0</color>
 </resources>

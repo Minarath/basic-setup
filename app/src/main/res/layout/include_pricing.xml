@@ -18,8 +18,10 @@
         android:id="@+id/lenMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:visibility="gone"
-        android:orientation="vertical">
+        tools:visibility="visible"
+        >
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -40,7 +42,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins_300"
-                android:hint="Opening Price"
+                android:hint="Price"
                 android:includeFontPadding="false"
                 android:inputType="number"
                 android:maxLines="1"
@@ -62,14 +64,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/edMinimumStock"
+                android:id="@+id/edCostPrice"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins_300"
-                android:hint="Discount"
+                android:hint="Coast Price"
                 android:includeFontPadding="false"
                 android:inputType="number"
                 android:maxLines="1"
@@ -92,7 +94,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/edLocation"
+                android:id="@+id/edtax"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_10sdp"
@@ -100,12 +102,43 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins_300"
                 android:hint="Tax/VAT"
-                android:textAllCaps="true"
                 android:includeFontPadding="false"
                 android:inputType="number"
                 android:maxLines="1"
                 android:paddingStart="@dimen/_20sdp"
                 android:singleLine="true"
+                android:textAllCaps="true"
+                android:textSize="@dimen/typing" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:background="@drawable/bg_edittext"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/edDiscount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_300"
+                android:hint="Discount"
+                android:includeFontPadding="false"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_20sdp"
+                android:singleLine="true"
+                android:textAllCaps="true"
                 android:textSize="@dimen/typing" />
 
         </FrameLayout>

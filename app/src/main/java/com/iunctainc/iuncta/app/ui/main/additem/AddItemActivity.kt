@@ -8,34 +8,24 @@ import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import com.facebook.internal.Utility
-import com.google.gson.Gson
 import com.iunctainc.iuncta.app.R
-import com.iunctainc.iuncta.app.data.beans.Constants
-import com.iunctainc.iuncta.app.data.beans.PaymentListItem
 import com.iunctainc.iuncta.app.data.remote.helper.Status
 import com.iunctainc.iuncta.app.databinding.ActivityAdditemBinding
-import com.iunctainc.iuncta.app.databinding.ActivityEditprofileBinding
-import com.iunctainc.iuncta.app.databinding.ActivityLoginBinding
-import com.iunctainc.iuncta.app.databinding.ActivityMainBinding
 import com.iunctainc.iuncta.app.di.base.view.AppActivity
 import com.iunctainc.iuncta.app.ui.main.barcode.SimpleScannerActivity
-import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import com.iunctainc.iuncta.app.util.event.SingleRequestEvent
 import com.iunctainc.iuncta.app.util.showToast
-import com.pixplicity.easyprefs.library.Prefs
 import android.app.Activity
 import androidx.activity.result.ActivityResult
 
-import androidx.activity.result.ActivityResultCallback
-
 import androidx.activity.result.contract.ActivityResultContracts
 
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import com.iunctainc.iuncta.app.ui.main.models.CategoryItem
+import java.util.ArrayList
 
 
 class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>() {
+
 
     fun newIntent(context: Context): Intent {
         val intent = Intent(context, AddItemActivity::class.java)
@@ -63,6 +53,9 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                 R.id.imgBarcode -> {
                     manageCamera()
                 }
+                R.id.txtSubmit -> {
+                    checkDataAndCallApi()
+                }
             }
         })
         viewModel.obrCategory1.observe(this, SingleRequestEvent.RequestObserver { resource ->
@@ -71,9 +64,9 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                     showProgressDialog(getString(R.string.plz_wait))
                 }
                 Status.SUCCESS -> {
-                    Log.e(">>>>", "subscribeToEvents: SUCCESS"+resource.data)
+                    Log.e(">>>>", "subscribeToEvents: SUCCESS" + resource.data)
                     dismissProgressDialog()
-
+                    setAdapterToSpinner(resource.data.data)
                 }
                 Status.WARN -> {
                     dismissProgressDialog()
@@ -85,7 +78,37 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                 }
             }
         })
-        vm.getCategory1(""+getData().data?.companies?.get(0)?.companyId)
+        viewModel.obrAddItem.observe(this, SingleRequestEvent.RequestObserver { resource ->
+            when (resource.status) {
+                Status.LOADING -> {
+                    showProgressDialog(getString(R.string.plz_wait))
+                }
+                Status.SUCCESS -> {
+                    Log.e(">>>>", "subscribeToEvents: SUCCESS" + resource.data)
+                    dismissProgressDialog()
+                    onBackPressed()
+                }
+                Status.WARN -> {
+                    dismissProgressDialog()
+                    Log.e(">>>>", "subscribeToEvents: WARN")
+                }
+                Status.ERROR -> {
+                    dismissProgressDialog()
+                    Log.e(">>>>", "subscribeToEvents: ERROR")
+                    showToast(""+resource.message)
+                }
+            }
+        })
+        vm.getCategory1("" + getData().data?.companies?.get(0)?.companyId)
+    }
+
+    var adapter: AlgorithmAdapter? = null
+    var category1Items: List<CategoryItem?>? = null
+
+    private fun setAdapterToSpinner(data: List<CategoryItem?>?) {
+        category1Items = data
+        adapter = AlgorithmAdapter(this, data as ArrayList<CategoryItem>?)
+        binding.spItemList.adapter = adapter
     }
 
     private fun manageStockBox() {
@@ -133,5 +156,38 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
             binding.edBarcode.setText(text?.extras?.get("data").toString())
         }
     }
+
+    private fun checkDataAndCallApi() {
+        if (binding.edItemName.text.toString().isEmpty()) {
+            showToast("Please Enter Item Name")
+        } else if (binding.edBarcode.text.toString().isEmpty()) {
+            showToast("Please Enter Item Barcode")
+        } else if (binding.includeStock.edOpeningStock.text.toString().isEmpty()) {
+            showToast("Please Enter Opening Stock")
+        } else if (binding.includeStock.edMinimumStock.text.toString().isEmpty()) {
+            showToast("Please Enter Minimum Stock")
+        } else if (binding.includeStock.edLocation.text.toString().isEmpty()) {
+            showToast("Please Enter Location")
+        } else if (binding.includePricing.edPrice.text.toString().isEmpty()) {
+            showToast("Please Enter Price")
+        } else if (binding.includePricing.edCostPrice.text.toString().isEmpty()) {
+            showToast("Please Enter Cost Price")
+        } else if (binding.includePricing.edtax.text.toString().isEmpty()) {
+            showToast("Please Enter Tax/Vat")
+        } else {
+            viewModel.obrAddItem(
+                getData().data?.companies?.get(0)?.companyId!!,
+                binding.includePricing.edPrice.text.toString().toInt(),
+                binding.includePricing.edCostPrice.text.toString().toInt(),
+                binding.includeStock.edOpeningStock.text.toString().toInt(),
+                binding.includePricing.edtax.text.toString().toInt(),
+                binding.includePricing.edDiscount.text.toString().toInt(),
+                category1Items?.get(binding.spItemList.selectedItemPosition)?.category1Id!!,
+                null, null, binding.edItemName.text.toString(),
+                binding.edBarcode.text.toString()
+            )
+        }
+    }
+
 
 }

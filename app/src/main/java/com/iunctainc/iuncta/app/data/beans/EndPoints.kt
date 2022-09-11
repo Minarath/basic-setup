@@ -5,6 +5,7 @@ object EndPoints {
     object Auth {
         const val login = "login"
         const val getCategory1 = "category-1"
+        const val addItems = "items"
 
 
         const val register_psh = "register-for-push"

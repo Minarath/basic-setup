@@ -149,8 +149,8 @@
                     app:layout_constraintStart_toEndOf="@+id/guidStart"
                     app:layout_constraintTop_toBottomOf="@+id/txtWelcome">
 
-                    <EditText
-                        android:id="@+id/edItemCategory"
+                    <Spinner
+                        android:id="@+id/spItemList"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_10sdp"
@@ -159,10 +159,7 @@
                         android:fontFamily="@font/poppins_300"
                         android:hint="Item Category"
                         android:includeFontPadding="false"
-                        android:inputType="text"
-                        android:maxLines="1"
                         android:paddingStart="@dimen/_20sdp"
-                        android:singleLine="true"
                         android:textSize="@dimen/typing" />
 
                     <ImageView
@@ -171,8 +168,8 @@
                         android:layout_gravity="end|center"
                         android:layout_marginEnd="@dimen/_15sdp"
                         android:src="@drawable/img_dropdown" />
-
                 </FrameLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

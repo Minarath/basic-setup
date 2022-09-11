@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="com.iunctainc.iuncta.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="holder"
+            type="com.iunctainc.iuncta.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleViewHolder" />
+
+        <variable
+            name="bean"
+            type="com.iunctainc.iuncta.app.ui.main.models.DataItem" />
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:background="@drawable/cell_item_background"
+        android:elevation="@dimen/_2sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/green_strock"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtItemName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_400"
+                    android:includeFontPadding="false"
+                    tools:text="Chocolate"
+                    android:text="@{bean.name}"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_400"
+                    android:includeFontPadding="false"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    tools:text="Sweets"
+                    android:text="@{bean.category1.name}"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/small"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtItemName" />
+
+
+                <TextView
+                    android:id="@+id/txtLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/poppins_400"
+                    android:text="@{bean.location}"
+                    android:includeFontPadding="false"
+                    tools:text="Near Door"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/small"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtCategory" />
+
+                <ImageView
+                    android:id="@+id/imgBarcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:src="@drawable/img_barcode_mini"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtLocation" />
+
+                <TextView
+                    android:id="@+id/txtBarcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_400"
+                    android:text="@{bean.barcode}"
+                    android:includeFontPadding="false"
+                    tools:text="1231231231232"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/small"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBarcode" />
+
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v)->callback.onItemClick(v,bean,holder.adapterPosition)}"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/img_edit"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtItemName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txtItemName" />
+
+
+                <TextView
+                    android:id="@+id/txtStocks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_400"
+                    android:includeFontPadding="false"
+                    android:text="@{``+bean.opgStock}"
+                    android:textColor="@color/green_border_color"
+                    android:textSize="@dimen/typing"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/txtBarcode"
+                    tools:text="10" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

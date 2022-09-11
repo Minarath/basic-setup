@@ -27,13 +27,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:textAllCaps="true"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_400"
                 android:gravity="center"
                 android:text="Dashboard"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/header"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +69,31 @@
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/frame2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:foregroundGravity="center">
+
+                    <ImageView
+                        android:id="@+id/txtTotSale"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_totsale" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtTotSale"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poppins_300"
+                        android:includeFontPadding="false"
+                        android:text="Total Sale" />
+                </RelativeLayout>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/frame2"
@@ -80,32 +104,128 @@
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintLeft_toRightOf="@+id/frame1"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:foregroundGravity="center">
+
+                    <ImageView
+                        android:id="@+id/imgTotPurchase"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_tot_purchase" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgTotPurchase"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poppins_300"
+                        android:includeFontPadding="false"
+                        android:text="Total Purchase" />
+                </RelativeLayout>
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lenTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/gray_strock"
+            android:elevation="@dimen/_2sdp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cnsDashboardHolder">
+
+
+            <TextView
+                android:id="@+id/txtSale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_300"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:onClick="@{(v)->vm.onClick(v)}"
+                android:text="Sale"
+                android:textAllCaps="true"
+                android:textColor="@color/text_color" />
+
+            <TextView
+                android:id="@+id/txtPurchase"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/strock_dashboard"
+                android:fontFamily="@font/poppins_300"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:onClick="@{(v)->vm.onClick(v)}"
+                android:text="Purchase"
+                android:textAllCaps="true"
+                android:textColor="@color/text_color" />
+
+            <TextView
+                android:id="@+id/txtItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_300"
+                android:background="@drawable/img_right_side"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:onClick="@{(v)->vm.onClick(v)}"
+                android:text="items"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0sp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cnsDashboardHolder">
+            app:layout_constraintTop_toBottomOf="@+id/lenTabLayout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recItemList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/cell_items" />
 
 
         </androidx.core.widget.NestedScrollView>
 
         <ImageView
             android:id="@+id/imgAddNewItem"
-            android:onClick="@{(v)->vm.onClick(v)}"
-            android:layout_margin="@dimen/_4sdp"
             android:layout_width="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:onClick="@{(v)->vm.onClick(v)}"
             android:padding="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:src="@drawable/ic_add"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

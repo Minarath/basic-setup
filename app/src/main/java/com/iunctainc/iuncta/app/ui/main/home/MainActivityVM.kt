@@ -8,6 +8,7 @@ import com.iunctainc.iuncta.app.data.remote.helper.NetworkErrorHandler
 import com.iunctainc.iuncta.app.data.remote.helper.Resource
 import com.iunctainc.iuncta.app.data.repo.dash.DashRepo
 import com.iunctainc.iuncta.app.di.base.viewmodel.BaseViewModel
+import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import com.iunctainc.iuncta.app.util.event.SingleRequestEvent
 import okhttp3.MultipartBody
@@ -16,24 +17,24 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class MainActivityVM @Inject constructor(private val dashRepo: DashRepo, private val networkErrorHandler: NetworkErrorHandler) : BaseViewModel() {
-    val obrLogin = SingleRequestEvent<SmartSaleLoginResponse>()
+    val obrGetItemList = SingleRequestEvent<ItemsListResponse>()
 
-    fun doLogin(email: String, password: String) {
-        dashRepo.doLogin(email, password, object : ApiCallback<Response<SmartSaleLoginResponse>>() {
-            override fun onSuccess(response: Response<SmartSaleLoginResponse>) {
-                obrLogin.value = Resource.success(response.body(), "OK")
+    fun getItemList(companyId: String) {
+        dashRepo.getItemList(companyId, object : ApiCallback<Response<ItemsListResponse>>() {
+            override fun onSuccess(response: Response<ItemsListResponse>) {
+                obrGetItemList.value = Resource.success(response.body(), "OK")
             }
 
             override fun onFailed(message: String) {
-                obrLogin.value = Resource.error(null, message)
+                obrGetItemList.value = Resource.error(null, message)
             }
 
             override fun onErrorThrow(exception: Exception) {
-                obrLogin.value = Resource.error(null, networkErrorHandler.getErrMsg(exception))
+                obrGetItemList.value = Resource.error(null, networkErrorHandler.getErrMsg(exception))
             }
 
             override fun onLoading() {
-                obrLogin.value = Resource.loading(null, "")
+                obrGetItemList.value = Resource.loading(null, "")
             }
         })
     }

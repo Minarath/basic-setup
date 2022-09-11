@@ -3,7 +3,9 @@ package com.iunctainc.iuncta.app.data.repo.dash
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
 import com.iunctainc.iuncta.app.data.remote.helper.ApiCallback
+import com.iunctainc.iuncta.app.ui.main.models.AddItemResponse
 import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
+import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
 import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -11,19 +13,23 @@ import retrofit2.Response
 
 interface DashRepo {
     //Latest delete other when you are done
-    fun doLogin(email:String,password:String,apiCallback: ApiCallback<Response<SmartSaleLoginResponse>>)
-    fun getCategory1(company_id:String,apiCallback: ApiCallback<Response<CategoryResponse>>)
+    fun doLogin(email: String, password: String, apiCallback: ApiCallback<Response<SmartSaleLoginResponse>>)
+    fun getCategory1(company_id: String, apiCallback: ApiCallback<Response<CategoryResponse>>)
+    fun addItemAsync(
+        company_id: Int,
+        sales_price: Int,
+        cost_price: Int,
+        opg_stock: Int,
+        vat: Int,
+        discount: Int,
+        category1_id: Int,
+        category2_id: Int?,
+        category3_id: Int?,
+        name: String,
+        barcode: String,  apiCallback: ApiCallback<Response<AddItemResponse>>
+    )
 
-
-
-
-
-
-
-
-
-
-
+    fun getItemList(company_id: String, apiCallback: ApiCallback<Response<ItemsListResponse>>)
 
 
     //setting screen
@@ -61,11 +67,9 @@ interface DashRepo {
     fun isReadNotification(data: Map<String, String>, apiCallback: ApiCallback<Response<NewCommanResponse>>)
     fun approveRequest(data: Map<String, String>, apiCallback: ApiCallback<Response<ApproVeResponse>>)
 
-    fun registerPush(data: Map<String, String>, apiCallback:  ApiCallback<Response<ApiResponse<Any>>>)
+    fun registerPush(data: Map<String, String>, apiCallback: ApiCallback<Response<ApiResponse<Any>>>)
     fun transactionHistory(apiCallback: ApiCallback<Response<TransactionHistoryResponse>>)
     fun appUpdaterAsync(data: Map<String, String>, apiCallback: ApiCallback<Response<AppData>>)
-
-
 
 
 }
