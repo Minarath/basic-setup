@@ -21,12 +21,11 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 
 import com.iunctainc.iuncta.app.ui.main.models.CategoryItem
+import com.iunctainc.iuncta.app.ui.main.models.DataItem
 import java.util.ArrayList
 
 
 class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>() {
-
-
     fun newIntent(context: Context): Intent {
         val intent = Intent(context, AddItemActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -67,12 +66,15 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                     Log.e(">>>>", "subscribeToEvents: SUCCESS" + resource.data)
                     dismissProgressDialog()
                     setAdapterToSpinner(resource.data.data)
+
                 }
                 Status.WARN -> {
+                    checkIntentAndSetData(false,null)
                     dismissProgressDialog()
                     Log.e(">>>>", "subscribeToEvents: WARN")
                 }
                 Status.ERROR -> {
+                    checkIntentAndSetData(false,null)
                     dismissProgressDialog()
                     Log.e(">>>>", "subscribeToEvents: ERROR")
                 }
@@ -95,11 +97,12 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                 Status.ERROR -> {
                     dismissProgressDialog()
                     Log.e(">>>>", "subscribeToEvents: ERROR")
-                    showToast(""+resource.message)
+                    showToast("" + resource.message)
                 }
             }
         })
         vm.getCategory1("" + getData().data?.companies?.get(0)?.companyId)
+
     }
 
     var adapter: AlgorithmAdapter? = null
@@ -109,6 +112,9 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
         category1Items = data
         adapter = AlgorithmAdapter(this, data as ArrayList<CategoryItem>?)
         binding.spItemList.adapter = adapter
+        if (data?.isNotEmpty() == true) {
+            checkIntentAndSetData(true, data)
+        }
     }
 
     private fun manageStockBox() {
@@ -162,19 +168,19 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
             showToast("Please Enter Item Name")
         } else if (binding.edBarcode.text.toString().isEmpty()) {
             showToast("Please Enter Item Barcode")
-        } else if (binding.includeStock.edOpeningStock.text.toString().isEmpty()) {
+        }/* else if (binding.includeStock.edOpeningStock.text.toString().isEmpty()) {
             showToast("Please Enter Opening Stock")
-        } else if (binding.includeStock.edMinimumStock.text.toString().isEmpty()) {
+        }*/ /*else if (binding.includeStock.edMinimumStock.text.toString().isEmpty()) {
             showToast("Please Enter Minimum Stock")
         } else if (binding.includeStock.edLocation.text.toString().isEmpty()) {
             showToast("Please Enter Location")
-        } else if (binding.includePricing.edPrice.text.toString().isEmpty()) {
+        }else if (binding.includePricing.edPrice.text.toString().isEmpty()) {
             showToast("Please Enter Price")
         } else if (binding.includePricing.edCostPrice.text.toString().isEmpty()) {
             showToast("Please Enter Cost Price")
         } else if (binding.includePricing.edtax.text.toString().isEmpty()) {
             showToast("Please Enter Tax/Vat")
-        } else {
+        }  */ else {
             viewModel.obrAddItem(
                 getData().data?.companies?.get(0)?.companyId!!,
                 binding.includePricing.edPrice.text.toString().toInt(),
@@ -184,10 +190,39 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                 binding.includePricing.edDiscount.text.toString().toInt(),
                 category1Items?.get(binding.spItemList.selectedItemPosition)?.category1Id!!,
                 null, null, binding.edItemName.text.toString(),
-                binding.edBarcode.text.toString()
+                binding.edBarcode.text.toString(), binding.includeStock.edLocation.text.toString(),
+                binding.includeStock.edMinimumStock.text.toString().toInt()
             )
         }
     }
 
+    private fun checkIntentAndSetData(isCategory: Boolean, categoryListItem: List<CategoryItem?>?) {
+        if (intent.hasExtra("data")) {
+            val data = intent.extras?.get("data") as DataItem
+            binding.edItemName.setText("" + data.name)
+            binding.edBarcode.setText("" + data.barcode)
 
+            binding.includePricing.edCostPrice.setText("" + data.costPrice)
+            binding.includePricing.edPrice.setText("" + data.salesPrice)
+            binding.includePricing.edtax.setText("" + data.vat)
+            binding.includePricing.edDiscount.setText("" + data.discount)
+
+            binding.includeStock.edClosingStock.setText("" + data.closing_stock)
+            binding.includeStock.edOpeningStock.setText("" + data.opgStock)
+            binding.includeStock.edMinimumStock.setText("" + data.min_stock)
+            binding.includeStock.edLocation.setText("" + data.location)
+
+            binding.edBarcode.isEnabled = false
+            binding.imgBarcode.isEnabled = false
+
+            if (isCategory) {
+                for (i in 0 until categoryListItem?.size!!) {
+                    if (categoryListItem[i]?.category1Id == data.category1?.category1Id) {
+                        binding.spItemList.setSelection((i))
+                    }
+                }
+            }
+
+        }
+    }
 }

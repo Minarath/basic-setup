@@ -232,7 +232,6 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-
         <TextView
             android:id="@+id/txtSubmit"
             android:layout_width="0sp"
@@ -252,14 +251,12 @@
             app:layout_constraintEnd_toEndOf="@id/guidEnd"
             app:layout_constraintStart_toStartOf="@id/guidStart" />
 
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
-
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidEnd"
@@ -269,4 +266,5 @@
             app:layout_constraintGuide_percent="0.95" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

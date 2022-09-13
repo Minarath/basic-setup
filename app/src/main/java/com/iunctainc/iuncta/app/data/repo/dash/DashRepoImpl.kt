@@ -77,10 +77,25 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
         }
     }
 
-    override fun addItemAsync(company_id: Int, sales_price: Int, cost_price: Int, opg_stock: Int, vat: Int, discount: Int, category1_id: Int, category2_id: Int?, category3_id: Int?, name: String, barcode: String, apiCallback: ApiCallback<Response<AddItemResponse>>) {
+    override fun addItemAsync(
+        company_id: Int,
+        sales_price: Int,
+        cost_price: Int,
+        opg_stock: Int,
+        vat: Int,
+        discount: Int,
+        category1_id: Int,
+        category2_id: Int?,
+        category3_id: Int?,
+        name: String,
+        barcode: String,
+        location: String,
+        min_stock: Int,
+        apiCallback: ApiCallback<Response<AddItemResponse>>
+    ) {
         apiCallback.onLoading()
         CoroutineScope(Dispatchers.IO).launch {
-            val request = dashApi.addItemAsync(company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode)
+            val request = dashApi.addItemAsync(company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location,min_stock)
             withContext(Dispatchers.Main) {
                 try {
                     val response = request.await()

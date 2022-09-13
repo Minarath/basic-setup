@@ -26,7 +26,7 @@ interface DashRepo {
         category2_id: Int?,
         category3_id: Int?,
         name: String,
-        barcode: String,  apiCallback: ApiCallback<Response<AddItemResponse>>
+        barcode: String,location:String, min_stock: Int, apiCallback: ApiCallback<Response<AddItemResponse>>
     )
 
     fun getItemList(company_id: String, apiCallback: ApiCallback<Response<ItemsListResponse>>)

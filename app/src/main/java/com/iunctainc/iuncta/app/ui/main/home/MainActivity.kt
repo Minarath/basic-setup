@@ -5,16 +5,9 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
-import com.facebook.internal.Utility
-import com.google.gson.Gson
 import com.iunctainc.iuncta.app.BR
 import com.iunctainc.iuncta.app.R
-import com.iunctainc.iuncta.app.data.beans.AssociateList
-import com.iunctainc.iuncta.app.data.beans.Constants
-import com.iunctainc.iuncta.app.data.beans.PaymentListItem
 import com.iunctainc.iuncta.app.data.remote.helper.Status
-import com.iunctainc.iuncta.app.databinding.ActivityEditprofileBinding
-import com.iunctainc.iuncta.app.databinding.ActivityLoginBinding
 import com.iunctainc.iuncta.app.databinding.ActivityMainBinding
 import com.iunctainc.iuncta.app.databinding.CellItemsBinding
 import com.iunctainc.iuncta.app.di.base.adapter.SimpleRecyclerViewAdapter
@@ -22,10 +15,8 @@ import com.iunctainc.iuncta.app.di.base.view.AppActivity
 import com.iunctainc.iuncta.app.ui.main.additem.AddItemActivity
 import com.iunctainc.iuncta.app.ui.main.models.DataItem
 import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
-import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
 import com.iunctainc.iuncta.app.util.event.SingleRequestEvent
 import com.iunctainc.iuncta.app.util.showToast
-import com.pixplicity.easyprefs.library.Prefs
 
 class MainActivity : AppActivity<ActivityMainBinding, MainActivityVM>() {
 
@@ -71,6 +62,7 @@ class MainActivity : AppActivity<ActivityMainBinding, MainActivityVM>() {
                 }
             }
         })
+        binding.txtTitle.text = getData().data?.companies?.get(0)?.name
     }
 
     var adapterItemList: SimpleRecyclerViewAdapter<DataItem, CellItemsBinding>? = null
@@ -81,20 +73,22 @@ class MainActivity : AppActivity<ActivityMainBinding, MainActivityVM>() {
         }
         adapterItemList = SimpleRecyclerViewAdapter(R.layout.cell_items, BR.bean, object : SimpleRecyclerViewAdapter.SimpleCallback<CellItemsBinding, DataItem> {
             override fun onItemClick(v: View, m: DataItem) {
-                Log.e(">>>>", "onViewCreated: ")
+                Log.e(">>>>", "onItemClick: " )
             }
 
             override fun onItemClick(v: View, m: DataItem, pos: Int) {
-                Log.e(">>>>", "onViewCreated: ")
+                Log.e(">>>>", "onItemClick: " )
+                val intents = AddItemActivity().newIntent(this@MainActivity)
+                intents.putExtra("data",m)
+                startNewActivity(intents, false)
             }
 
             override fun onPositionClick(v: View, pos: Int) {
                 super.onPositionClick(v, pos)
-                Log.e(">>>>", "onViewCreated: ")
             }
 
             override fun onViewCreated(holder: SimpleRecyclerViewAdapter.SimpleViewHolder<CellItemsBinding>, position: Int, m: DataItem) {
-                Log.e(">>>>", "onViewCreated: ")
+                Log.e(">>>>", "onItemClick: " )
             }
         })
         binding.recItemList.adapter = adapterItemList

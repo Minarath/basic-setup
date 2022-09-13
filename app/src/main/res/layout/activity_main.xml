@@ -27,7 +27,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/txtTitle"
                 android:layout_width="0sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_marginHorizontal="@dimen/_40sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_400"

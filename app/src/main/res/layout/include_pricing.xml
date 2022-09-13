@@ -71,7 +71,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins_300"
-                android:hint="Coast Price"
+                android:hint="Cost Price"
                 android:includeFontPadding="false"
                 android:inputType="number"
                 android:maxLines="1"

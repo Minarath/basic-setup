@@ -1,6 +1,7 @@
 package com.iunctainc.iuncta.app.ui.main.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class CategoryResponse(
 
@@ -10,7 +11,7 @@ data class CategoryResponse(
     val error: String? = null,
     @field:SerializedName("message")
     val message: String? = null
-)
+) : Serializable
 
 data class CategoryItem(
 
@@ -22,7 +23,7 @@ data class CategoryItem(
 
     @field:SerializedName("company")
     val company: Company? = null
-)
+) : Serializable
 
 data class Company(
 
@@ -40,4 +41,4 @@ data class Company(
 
     @field:SerializedName("logo")
     val logo: String? = null
-)
+) : Serializable

@@ -39,6 +39,8 @@ interface DashApi {
         @Field("category3_id") category3_id: Int?,
         @Field("name") name: String,
         @Field("barcode") barcode: String,
+        @Field("location") location: String,
+        @Field("min_stock") min_stock: Int
     ): Deferred<Response<AddItemResponse>>
 
 
