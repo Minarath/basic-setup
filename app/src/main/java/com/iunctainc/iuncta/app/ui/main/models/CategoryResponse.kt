@@ -13,6 +13,18 @@ data class CategoryResponse(
     val message: String? = null
 ) : Serializable
 
+
+data class AddCaResponse(
+    @field:SerializedName("data")
+    val data: CategoryItem? = null,
+    @field:SerializedName("error")
+    val error: String? = null,
+    @field:SerializedName("message")
+    val message: String? = null
+) : Serializable
+
+
+
 data class CategoryItem(
 
     @field:SerializedName("category1_id")

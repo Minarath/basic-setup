@@ -2,10 +2,7 @@ package com.iunctainc.iuncta.app.data.remote.api
 
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
-import com.iunctainc.iuncta.app.ui.main.models.AddItemResponse
-import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
-import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
-import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
+import com.iunctainc.iuncta.app.ui.main.models.*
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -24,26 +21,49 @@ interface DashApi {
     @GET(EndPoints.Auth.addItems)
     fun getItemListAsync(@Query("company_id") companyId: String): Deferred<Response<ItemsListResponse>>
 
+    @FormUrlEncoded
+    @POST(EndPoints.Auth.getCategory1)
+    fun addCategory1Async(
+        @Field("company_id") company_id: Int,
+        @Field("name") sales_price: String
+    ): Deferred<Response<AddCaResponse>>
 
     @FormUrlEncoded
     @POST(EndPoints.Auth.addItems)
     fun addItemAsync(
-        @Field("company_id") company_id: Int,
-        @Field("sales_price") sales_price: Int,
-        @Field("cost_price") cost_price: Int,
-        @Field("opg_stock") opg_stock: Int,
-        @Field("vat") vat: Int,
-        @Field("discount") discount: Int,
-        @Field("category1_id") category1_id: Int,
-        @Field("category2_id") category2_id: Int?,
-        @Field("category3_id") category3_id: Int?,
+        @Field("company_id") company_id: String,
+        @Field("sales_price") sales_price: String,
+        @Field("cost_price") cost_price: String,
+        @Field("opg_stock") opg_stock: String,
+        @Field("vat") vat: String,
+        @Field("discount") discount: String,
+        @Field("category1_id") category1_id: String,
+        @Field("category2_id") category2_id: String?,
+        @Field("category3_id") category3_id: String?,
         @Field("name") name: String,
         @Field("barcode") barcode: String,
         @Field("location") location: String,
-        @Field("min_stock") min_stock: Int
+        @Field("min_stock") min_stock: String
     ): Deferred<Response<AddItemResponse>>
 
-
+    @FormUrlEncoded
+    @POST(EndPoints.Auth.updateItem)
+    fun updateItemAsync(
+        @Path("id") id: String,
+        @Field("company_id") company_id: String,
+        @Field("sales_price") sales_price: String,
+        @Field("cost_price") cost_price: String,
+        @Field("opg_stock") opg_stock: String,
+        @Field("vat") vat: String,
+        @Field("discount") discount: String,
+        @Field("category1_id") category1_id: String,
+        @Field("category2_id") category2_id: String?,
+        @Field("category3_id") category3_id: String?,
+        @Field("name") name: String,
+        @Field("barcode") barcode: String,
+        @Field("location") location: String,
+        @Field("min_stock") min_stock: String
+    ): Deferred<Response<AddItemResponse>>
 
 
     @GET(EndPoints.Auth.userInfor)

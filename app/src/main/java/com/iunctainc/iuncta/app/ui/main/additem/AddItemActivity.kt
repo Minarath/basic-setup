@@ -16,16 +16,31 @@ import com.iunctainc.iuncta.app.ui.main.barcode.SimpleScannerActivity
 import com.iunctainc.iuncta.app.util.event.SingleRequestEvent
 import com.iunctainc.iuncta.app.util.showToast
 import android.app.Activity
+import android.app.Dialog
+import android.view.LayoutInflater
+import android.widget.AdapterView
+import android.widget.FrameLayout
 import androidx.activity.result.ActivityResult
 
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.databinding.DataBindingUtil
+import com.iunctainc.iuncta.app.databinding.DialogAddNewCatBinding
 
 import com.iunctainc.iuncta.app.ui.main.models.CategoryItem
 import com.iunctainc.iuncta.app.ui.main.models.DataItem
+
 import java.util.ArrayList
+import android.util.DisplayMetrics
+import android.R.string
+
+
+
 
 
 class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>() {
+    var catList: ArrayList<CategoryItem?>? = ArrayList()
+    lateinit var addCateDialog: Dialog
+
     fun newIntent(context: Context): Intent {
         val intent = Intent(context, AddItemActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -65,16 +80,17 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                 Status.SUCCESS -> {
                     Log.e(">>>>", "subscribeToEvents: SUCCESS" + resource.data)
                     dismissProgressDialog()
-                    setAdapterToSpinner(resource.data.data)
+                    catList = resource.data.data as ArrayList<CategoryItem?>?
+                    setAdapterToSpinner()
 
                 }
                 Status.WARN -> {
-                    checkIntentAndSetData(false,null)
+                    checkIntentAndSetData(false, null)
                     dismissProgressDialog()
                     Log.e(">>>>", "subscribeToEvents: WARN")
                 }
                 Status.ERROR -> {
-                    checkIntentAndSetData(false,null)
+                    checkIntentAndSetData(false, null)
                     dismissProgressDialog()
                     Log.e(">>>>", "subscribeToEvents: ERROR")
                 }
@@ -101,19 +117,84 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                 }
             }
         })
+
+        viewModel.obrAddCategory.observe(this, SingleRequestEvent.RequestObserver { resource ->
+            when (resource.status) {
+                Status.LOADING -> {
+                    showProgressDialog(getString(R.string.plz_wait))
+                }
+                Status.SUCCESS -> {
+                    Log.e(">>>>", "subscribeToEvents: SUCCESS" + resource.data)
+                    dismissProgressDialog()
+                    if (catList?.size != 0) {
+                        catList?.add((catList!!.size - 1), resource.data.data)
+                        if (catList!!.size == 1) {
+                            binding.spItemList.setSelection(0)
+                        } else {
+                            binding.spItemList.setSelection(catList!!.size - 2)
+                        }
+                        spinnerAdapter?.notifyDataSetChanged()
+                        addCateDialog.dismiss()
+                    } else {
+                        catList?.add(resource.data.data)
+                        setAdapterToSpinner()
+                        addCateDialog.dismiss()
+                    }
+                }
+                Status.WARN -> {
+                    dismissProgressDialog()
+                    Log.e(">>>>", "subscribeToEvents: WARN")
+                }
+                Status.ERROR -> {
+                    dismissProgressDialog()
+                    Log.e(">>>>", "subscribeToEvents: ERROR")
+                    showToast("" + resource.message)
+                }
+            }
+        })
+
         vm.getCategory1("" + getData().data?.companies?.get(0)?.companyId)
 
     }
 
-    var adapter: AlgorithmAdapter? = null
-    var category1Items: List<CategoryItem?>? = null
+    var spinnerAdapter: AlgorithmAdapter? = null
 
-    private fun setAdapterToSpinner(data: List<CategoryItem?>?) {
-        category1Items = data
-        adapter = AlgorithmAdapter(this, data as ArrayList<CategoryItem>?)
-        binding.spItemList.adapter = adapter
-        if (data?.isNotEmpty() == true) {
-            checkIntentAndSetData(true, data)
+    private fun setAdapterToSpinner() {
+        catList?.add(CategoryItem(9090, getString(R.string.add_new_item), null))
+        spinnerAdapter = AlgorithmAdapter(this, catList as ArrayList<CategoryItem>?) {
+        }
+        binding.spItemList.adapter = spinnerAdapter
+        if (catList?.isNotEmpty() == true) {
+            checkIntentAndSetData(true, catList)
+        }
+        binding.spItemList.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (catList?.get(position)?.name.equals(resources.getString(R.string.add_new_item))) {
+                    binding.spItemList.setSelection(0)
+                    showAddNewCatDialog()
+                }
+            }
+        }
+    }
+
+    private fun showAddNewCatDialog() {
+        addCateDialog = Dialog(this)
+        var mBinding = DataBindingUtil.inflate<DialogAddNewCatBinding>(LayoutInflater.from(this), R.layout.dialog_add_new_cat, null, false)
+        addCateDialog.setContentView(mBinding.root)
+        addCateDialog.window?.setBackgroundDrawableResource(R.color.transparent)
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val width = displayMetrics.widthPixels
+        addCateDialog.window?.setLayout((width - 40), FrameLayout.LayoutParams.WRAP_CONTENT);
+        addCateDialog.show()
+        mBinding.txtAdd.setOnClickListener {
+            if (mBinding.edCategory.text.toString().isNotEmpty()) {
+                viewModel.addCat1(getData().data?.companies?.get(0)?.companyId!!.toString(), mBinding.edCategory.text.toString())
+            }
+        }
+        mBinding.txtCat.setOnClickListener {
+            addCateDialog.dismiss()
         }
     }
 
@@ -181,40 +262,60 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
         } else if (binding.includePricing.edtax.text.toString().isEmpty()) {
             showToast("Please Enter Tax/Vat")
         }  */ else {
-            viewModel.obrAddItem(
-                getData().data?.companies?.get(0)?.companyId!!,
-                binding.includePricing.edPrice.text.toString().toInt(),
-                binding.includePricing.edCostPrice.text.toString().toInt(),
-                binding.includeStock.edOpeningStock.text.toString().toInt(),
-                binding.includePricing.edtax.text.toString().toInt(),
-                binding.includePricing.edDiscount.text.toString().toInt(),
-                category1Items?.get(binding.spItemList.selectedItemPosition)?.category1Id!!,
-                null, null, binding.edItemName.text.toString(),
-                binding.edBarcode.text.toString(), binding.includeStock.edLocation.text.toString(),
-                binding.includeStock.edMinimumStock.text.toString().toInt()
-            )
+            if (intent.hasExtra("data")) {
+                val data = intent.extras?.get("data") as DataItem
+                viewModel.obrAddItem(
+                    ""+data.itemId,
+                    ""+getData().data?.companies?.get(0)?.companyId!!,
+                    ""+checkIsEmpty(binding.includePricing.edPrice.text.toString()),
+                    ""+checkIsEmpty(binding.includePricing.edCostPrice.text.toString()),
+                    ""+checkIsEmpty(binding.includeStock.edOpeningStock.text.toString()),
+                    ""+checkIsEmpty(binding.includePricing.edtax.text.toString()),
+                    ""+checkIsEmpty(binding.includePricing.edDiscount.text.toString()),
+                    ""+catList?.get(binding.spItemList.selectedItemPosition)?.category1Id!!,
+                    null, null, binding.edItemName.text.toString(),
+                    binding.edBarcode.text.toString(), binding.includeStock.edLocation.text.toString(),
+                    ""+checkIsEmpty(binding.includeStock.edMinimumStock.text.toString()), true
+                )
+            } else {
+                viewModel.obrAddItem(
+                    null,
+                    ""+getData().data?.companies?.get(0)?.companyId!!,
+                    ""+checkIsEmpty(binding.includePricing.edPrice.text.toString()),
+                    ""+checkIsEmpty(binding.includePricing.edCostPrice.text.toString()),
+                    ""+checkIsEmpty(binding.includeStock.edOpeningStock.text.toString()),
+                    ""+checkIsEmpty(binding.includePricing.edtax.text.toString()),
+                    ""+checkIsEmpty(binding.includePricing.edDiscount.text.toString()),
+                    ""+catList?.get(binding.spItemList.selectedItemPosition)?.category1Id!!,
+                    null, null, binding.edItemName.text.toString(),
+                    binding.edBarcode.text.toString(), binding.includeStock.edLocation.text.toString(),
+                    ""+checkIsEmpty(binding.includeStock.edMinimumStock.text.toString()), false
+                )
+            }
         }
+
     }
 
     private fun checkIntentAndSetData(isCategory: Boolean, categoryListItem: List<CategoryItem?>?) {
         if (intent.hasExtra("data")) {
+            binding.txtSubmit.text = resources.getString(R.string.update)
             val data = intent.extras?.get("data") as DataItem
             binding.edItemName.setText("" + data.name)
             binding.edBarcode.setText("" + data.barcode)
-
-            binding.includePricing.edCostPrice.setText("" + data.costPrice)
-            binding.includePricing.edPrice.setText("" + data.salesPrice)
-            binding.includePricing.edtax.setText("" + data.vat)
-            binding.includePricing.edDiscount.setText("" + data.discount)
-
-            binding.includeStock.edClosingStock.setText("" + data.closing_stock)
-            binding.includeStock.edOpeningStock.setText("" + data.opgStock)
-            binding.includeStock.edMinimumStock.setText("" + data.min_stock)
-            binding.includeStock.edLocation.setText("" + data.location)
+            binding.includePricing.edCostPrice.setText(checkIsEmpty(data.costPrice))
+            binding.includePricing.edPrice.setText(checkIsEmpty(data.salesPrice))
+            binding.includePricing.edtax.setText(checkIsEmpty(data.vat))
+            binding.includePricing.edDiscount.setText(checkIsEmpty(data.discount))
+            binding.includeStock.edOpeningStock.setText(checkIsEmpty(data.opgStock))
+            binding.includeStock.edMinimumStock.setText(checkIsEmpty(data.min_stock))
+            if(data.location==null){
+                binding.includeStock.edLocation.setText("")
+            }else{
+                binding.includeStock.edLocation.setText(data.location)
+            }
 
             binding.edBarcode.isEnabled = false
             binding.imgBarcode.isEnabled = false
-
             if (isCategory) {
                 for (i in 0 until categoryListItem?.size!!) {
                     if (categoryListItem[i]?.category1Id == data.category1?.category1Id) {
@@ -222,7 +323,31 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                     }
                 }
             }
-
         }
     }
+
+    private fun checkIsEmpty(values: String): String {
+        if (values.isEmpty()) {
+            return "0"
+        } else {
+            return values
+        }
+    }
+
+    private fun checkIsEmpty(values: Double?): String {
+        if (values == 0.0) {
+            return ""
+        } else {
+            return "" + values
+        }
+    }
+
+    private fun checkIsEmpty(values: Int?): String {
+        if (values == 0) {
+            return ""
+        } else {
+            return "" + values
+        }
+    }
+
 }

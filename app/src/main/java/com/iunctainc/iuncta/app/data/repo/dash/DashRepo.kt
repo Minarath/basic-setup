@@ -3,10 +3,7 @@ package com.iunctainc.iuncta.app.data.repo.dash
 import com.iunctainc.iuncta.app.data.beans.*
 import com.iunctainc.iuncta.app.data.beans.base.ApiResponse
 import com.iunctainc.iuncta.app.data.remote.helper.ApiCallback
-import com.iunctainc.iuncta.app.ui.main.models.AddItemResponse
-import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
-import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
-import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
+import com.iunctainc.iuncta.app.ui.main.models.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -16,18 +13,25 @@ interface DashRepo {
     fun doLogin(email: String, password: String, apiCallback: ApiCallback<Response<SmartSaleLoginResponse>>)
     fun getCategory1(company_id: String, apiCallback: ApiCallback<Response<CategoryResponse>>)
     fun addItemAsync(
-        company_id: Int,
-        sales_price: Int,
-        cost_price: Int,
-        opg_stock: Int,
-        vat: Int,
-        discount: Int,
-        category1_id: Int,
-        category2_id: Int?,
-        category3_id: Int?,
+        itemId:String?,
+        company_id: String,
+        sales_price: String,
+        cost_price: String,
+        opg_stock: String,
+        vat: String,
+        discount: String,
+        category1_id: String,
+        category2_id: String?,
+        category3_id: String?,
         name: String,
-        barcode: String,location:String, min_stock: Int, apiCallback: ApiCallback<Response<AddItemResponse>>
+        barcode: String, location: String, min_stock: String, isAddItem: Boolean, apiCallback: ApiCallback<Response<AddItemResponse>>
     )
+
+    fun addCategory1(
+        company_id: Int,
+        name: String, apiCallback: ApiCallback<Response<AddCaResponse>>
+    )
+
 
     fun getItemList(company_id: String, apiCallback: ApiCallback<Response<ItemsListResponse>>)
 

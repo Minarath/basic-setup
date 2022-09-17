@@ -7,10 +7,7 @@ import com.iunctainc.iuncta.app.data.beans.base.SimpleApiResponse
 import com.iunctainc.iuncta.app.data.local.SharedPref
 import com.iunctainc.iuncta.app.data.remote.api.DashApi
 import com.iunctainc.iuncta.app.data.remote.helper.ApiCallback
-import com.iunctainc.iuncta.app.ui.main.models.AddItemResponse
-import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
-import com.iunctainc.iuncta.app.ui.main.models.ItemsListResponse
-import com.iunctainc.iuncta.app.ui.main.models.SmartSaleLoginResponse
+import com.iunctainc.iuncta.app.ui.main.models.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -78,24 +75,61 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
     }
 
     override fun addItemAsync(
-        company_id: Int,
-        sales_price: Int,
-        cost_price: Int,
-        opg_stock: Int,
-        vat: Int,
-        discount: Int,
-        category1_id: Int,
-        category2_id: Int?,
-        category3_id: Int?,
+        itemId: String?,
+        company_id: String,
+        sales_price: String,
+        cost_price: String,
+        opg_stock: String,
+        vat: String,
+        discount: String,
+        category1_id: String,
+        category2_id: String?,
+        category3_id: String?,
         name: String,
         barcode: String,
         location: String,
-        min_stock: Int,
+        min_stock: String,
+        isAddItem: Boolean,
         apiCallback: ApiCallback<Response<AddItemResponse>>
     ) {
         apiCallback.onLoading()
         CoroutineScope(Dispatchers.IO).launch {
-            val request = dashApi.addItemAsync(company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location,min_stock)
+            val request =
+                if (isAddItem) {
+                    dashApi.updateItemAsync(""+itemId,company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location, min_stock)
+                } else {
+                    dashApi.addItemAsync(company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location, min_stock)
+                }
+
+            withContext(Dispatchers.Main) {
+                try {
+                    val response = request.await()
+                    if (response.isSuccessful) {
+                        apiCallback.onSuccess(response)
+                    } else if (response.code() == Constants.NetworkCode.UNAUTHORIZED) {
+
+                    } else {
+                        val apiRes = SimpleApiResponse()
+                        val apiResponse: SimpleApiResponse? = Gson().fromJson(response.errorBody()?.string(), apiRes::class.java)
+                        apiResponse?.message?.let {
+                            apiCallback.onFailed(it)
+                        }
+                            ?: let { apiCallback.onFailed("Something went wrong") }
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        apiCallback.onErrorThrow(e)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun addCategory1(company_id: Int, name: String, apiCallback: ApiCallback<Response<AddCaResponse>>) {
+        apiCallback.onLoading()
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = dashApi.addCategory1Async(company_id, name)
             withContext(Dispatchers.Main) {
                 try {
                     val response = request.await()

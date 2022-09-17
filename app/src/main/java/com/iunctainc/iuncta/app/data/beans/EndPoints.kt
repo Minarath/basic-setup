@@ -6,6 +6,7 @@ object EndPoints {
         const val login = "login"
         const val getCategory1 = "category-1"
         const val addItems = "items"
+        const val updateItem = "items/{id}"
 
 
         const val register_psh = "register-for-push"
