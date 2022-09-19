@@ -90,13 +90,13 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
         location: String,
         min_stock: String,
         isAddItem: Boolean,
-        apiCallback: ApiCallback<Response<AddItemResponse>>
+        apiCallback: ApiCallback<Response<DataItem>>
     ) {
         apiCallback.onLoading()
         CoroutineScope(Dispatchers.IO).launch {
             val request =
                 if (isAddItem) {
-                    dashApi.updateItemAsync(""+itemId,company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location, min_stock)
+                    dashApi.updateItemAsync("" + itemId, company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location, min_stock)
                 } else {
                     dashApi.addItemAsync(company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location, min_stock)
                 }
@@ -155,10 +155,10 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
         }
     }
 
-    override fun getItemList(company_id: String, apiCallback: ApiCallback<Response<ItemsListResponse>>) {
+    override fun getItemList(company_id: String,page:Int, apiCallback: ApiCallback<Response<ItemsListResponse>>) {
         apiCallback.onLoading()
         CoroutineScope(Dispatchers.IO).launch {
-            val request = dashApi.getItemListAsync(company_id)
+            val request = dashApi.getItemListAsync(company_id,page)
             withContext(Dispatchers.Main) {
                 try {
                     val response = request.await()
@@ -184,6 +184,32 @@ class DashRepoImpl(private val dashApi: DashApi, private val sharedPref: SharedP
         }
     }
 
+    override fun deleteItemAsync(itemId: String, apiCallback: ApiCallback<Response<CategoryResponse>>) {
+        apiCallback.onLoading()
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = dashApi.deleteItemAsync(itemId)
+            withContext(Dispatchers.Main) {
+                try {
+                    val response = request.await()
+                    if (response.isSuccessful) {
+                        apiCallback.onSuccess(response)
+                    } else {
+                        val apiRes = SimpleApiResponse()
+                        val apiResponse: SimpleApiResponse? = Gson().fromJson(response.errorBody()?.string(), apiRes::class.java)
+                        apiResponse?.message?.let {
+                            apiCallback.onFailed(it)
+                        }
+                            ?: let { apiCallback.onFailed("Something went wrong") }
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        apiCallback.onErrorThrow(e)
+                    }
+                }
+            }
+        }
+    }
 
     override fun getUserInfo(apiCallback: ApiCallback<Response<LoginResponse>>) {
         apiCallback.onLoading()

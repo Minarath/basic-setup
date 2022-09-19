@@ -19,7 +19,7 @@ interface DashApi {
     fun getCategory1Async(@Query("company_id") companyId: String): Deferred<Response<CategoryResponse>>
 
     @GET(EndPoints.Auth.addItems)
-    fun getItemListAsync(@Query("company_id") companyId: String): Deferred<Response<ItemsListResponse>>
+    fun getItemListAsync(@Query("company_id") companyId: String,@Query("page") page:Int): Deferred<Response<ItemsListResponse>>
 
     @FormUrlEncoded
     @POST(EndPoints.Auth.getCategory1)
@@ -44,7 +44,7 @@ interface DashApi {
         @Field("barcode") barcode: String,
         @Field("location") location: String,
         @Field("min_stock") min_stock: String
-    ): Deferred<Response<AddItemResponse>>
+    ): Deferred<Response<DataItem>>
 
     @FormUrlEncoded
     @POST(EndPoints.Auth.updateItem)
@@ -63,12 +63,13 @@ interface DashApi {
         @Field("barcode") barcode: String,
         @Field("location") location: String,
         @Field("min_stock") min_stock: String
-    ): Deferred<Response<AddItemResponse>>
+    ): Deferred<Response<DataItem>>
 
+    @DELETE(EndPoints.Auth.updateItem)
+    fun deleteItemAsync(@Path("id") id: String): Deferred<Response<CategoryResponse>>
 
     @GET(EndPoints.Auth.userInfor)
     fun getUserInfoAsync(): Deferred<Response<LoginResponse>>
-
 
     @POST(EndPoints.Auth.change_username)
     fun changeUserNameAsync(@Body user: RequestUsernameChange): Deferred<Response<NewCommanResponse>>
@@ -86,14 +87,11 @@ interface DashApi {
     @POST(EndPoints.Auth.sendOtpToPhone)
     fun sendOtpToPhoneAsync(@Body user: SendOtpToPhoneRequest): Deferred<Response<SendPhoneOtpResponse>>
 
-
     @POST(EndPoints.Auth.verifyChangePhoneOtp)
     fun verifyOtpPhoneAsync(@Body user: VerifyEmailRequest): Deferred<Response<NewCommanResponse>>
 
-
     @GET(EndPoints.Auth.getDefaultProfile)
     fun getUserProfileListAsync(): Deferred<Response<UserProfileList>>
-
 
     @POST(EndPoints.Auth.setDefaultProfile)
     fun setDefaultProfileAsync(@Body user: SetDefaultProfile): Deferred<Response<NewCommanResponse>>

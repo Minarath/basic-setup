@@ -24,7 +24,7 @@ interface DashRepo {
         category2_id: String?,
         category3_id: String?,
         name: String,
-        barcode: String, location: String, min_stock: String, isAddItem: Boolean, apiCallback: ApiCallback<Response<AddItemResponse>>
+        barcode: String, location: String, min_stock: String, isAddItem: Boolean, apiCallback: ApiCallback<Response<DataItem>>
     )
 
     fun addCategory1(
@@ -33,7 +33,9 @@ interface DashRepo {
     )
 
 
-    fun getItemList(company_id: String, apiCallback: ApiCallback<Response<ItemsListResponse>>)
+    fun getItemList(company_id: String, page:Int,apiCallback: ApiCallback<Response<ItemsListResponse>>)
+
+    fun deleteItemAsync( itemId: String, apiCallback: ApiCallback<Response<CategoryResponse>>)
 
 
     //setting screen

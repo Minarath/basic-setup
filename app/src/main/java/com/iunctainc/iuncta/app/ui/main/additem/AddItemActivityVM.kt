@@ -8,13 +8,14 @@ import com.iunctainc.iuncta.app.di.base.viewmodel.BaseViewModel
 import com.iunctainc.iuncta.app.ui.main.models.AddCaResponse
 import com.iunctainc.iuncta.app.ui.main.models.AddItemResponse
 import com.iunctainc.iuncta.app.ui.main.models.CategoryResponse
+import com.iunctainc.iuncta.app.ui.main.models.DataItem
 import com.iunctainc.iuncta.app.util.event.SingleRequestEvent
 import retrofit2.Response
 import javax.inject.Inject
 
 class AddItemActivityVM @Inject constructor(private val dashRepo: DashRepo, private val networkErrorHandler: NetworkErrorHandler) : BaseViewModel() {
     val obrCategory1 = SingleRequestEvent<CategoryResponse>()
-    val obrAddItem = SingleRequestEvent<AddItemResponse>()
+    val obrAddItem = SingleRequestEvent<DataItem>()
     val obrAddCategory = SingleRequestEvent<AddCaResponse>()
 
     fun getCategory1(companyId: String) {
@@ -71,8 +72,8 @@ class AddItemActivityVM @Inject constructor(private val dashRepo: DashRepo, priv
         barcode: String,
         location: String,min_stock: String,isAddItem:Boolean
     ) {
-        dashRepo.addItemAsync(itemId,company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location,min_stock, isAddItem,object : ApiCallback<Response<AddItemResponse>>() {
-            override fun onSuccess(response: Response<AddItemResponse>) {
+        dashRepo.addItemAsync(itemId,company_id, sales_price, cost_price, opg_stock, vat, discount, category1_id, category2_id, category3_id, name, barcode, location,min_stock, isAddItem,object : ApiCallback<Response<DataItem>>() {
+            override fun onSuccess(response: Response<DataItem>) {
                 obrAddItem.value = Resource.success(response.body(), "OK")
             }
 

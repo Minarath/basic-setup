@@ -3,6 +3,10 @@ package com.iunctainc.iuncta.app.data.beans
 import com.iunctainc.iuncta.app.BuildConfig
 
 object Constants {
+    object LoadMore {
+         const val perPage = 20
+    }
+
 
     object Updater {
         val ANDROID_KEY = "android"

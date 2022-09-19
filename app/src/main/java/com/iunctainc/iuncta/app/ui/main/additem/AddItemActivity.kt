@@ -104,7 +104,9 @@ class AddItemActivity : AppActivity<ActivityAdditemBinding, AddItemActivityVM>()
                 Status.SUCCESS -> {
                     Log.e(">>>>", "subscribeToEvents: SUCCESS" + resource.data)
                     dismissProgressDialog()
-                    onBackPressed()
+                    val data=Intent().putExtra("data",resource.data)
+                    setResult(RESULT_OK,data)
+                    finish()
                 }
                 Status.WARN -> {
                     dismissProgressDialog()

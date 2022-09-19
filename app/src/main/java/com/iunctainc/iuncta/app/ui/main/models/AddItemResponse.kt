@@ -1,6 +1,7 @@
 package com.iunctainc.iuncta.app.ui.main.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class AddItemResponse(
 
@@ -51,5 +52,5 @@ data class AddItemResponse(
 
 	@field:SerializedName("cost_price")
 	val costPrice: Double? = null
-)
+):Serializable
 
