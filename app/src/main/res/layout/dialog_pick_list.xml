@@ -7,7 +7,7 @@
 
         <variable
             name="callback"
-            type="com.iunctainc.iuncta.app.di.base.dialog.ListDialog.Listener" />
+            type="com.smart.sample.app.di.base.dialog.ListDialog.Listener" />
     </data>
 
     <RelativeLayout

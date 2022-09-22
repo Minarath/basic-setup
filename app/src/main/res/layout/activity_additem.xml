@@ -7,11 +7,11 @@
 
         <variable
             name="bean"
-            type="com.iunctainc.iuncta.app.data.beans.UserProfileListRes" />
+            type="com.smart.sample.app.data.beans.UserProfileListRes" />
 
         <variable
             name="vm"
-            type="com.iunctainc.iuncta.app.ui.main.additem.AddItemActivityVM" />
+            type="com.smart.sample.app.ui.main.additem.AddItemActivityVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,7 +122,7 @@
                         android:fontFamily="@font/poppins_300"
                         android:hint="Item Barcode"
                         android:includeFontPadding="false"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:paddingStart="@dimen/_20sdp"
                         android:singleLine="true"

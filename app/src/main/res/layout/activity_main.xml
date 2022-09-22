@@ -7,11 +7,11 @@
 
         <variable
             name="bean"
-            type="com.iunctainc.iuncta.app.data.beans.UserProfileListRes" />
+            type="com.smart.sample.app.data.beans.UserProfileListRes" />
 
         <variable
             name="vm"
-            type="com.iunctainc.iuncta.app.ui.main.home.MainActivityVM" />
+            type="com.smart.sample.app.ui.main.home.MainActivityVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,7 +95,7 @@
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/poppins_300"
                         android:includeFontPadding="false"
-                        android:text="Total Sale" />
+                        android:text="" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -130,7 +130,7 @@
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/poppins_300"
                         android:includeFontPadding="false"
-                        android:text="Total Purchase" />
+                        android:text="" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -161,7 +161,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:onClick="@{(v)->vm.onClick(v)}"
-                android:text="Sale"
+                android:text=""
                 android:textAllCaps="true"
                 android:textColor="@color/text_color" />
 
@@ -176,7 +176,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:onClick="@{(v)->vm.onClick(v)}"
-                android:text="Purchase"
+                android:text=""
                 android:textAllCaps="true"
                 android:textColor="@color/text_color" />
 
@@ -191,7 +191,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:onClick="@{(v)->vm.onClick(v)}"
-                android:text="items"
+                android:text=""
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
 
@@ -210,14 +210,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lenTabLayout">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recItemList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="3"
-                tools:listitem="@layout/cell_items" />
+
 
 
         </androidx.core.widget.NestedScrollView>

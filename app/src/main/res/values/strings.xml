@@ -1,8 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">SmartSales</string>
+    <string name="app_name">Sample App</string>
 
 
-    <string name="smartsales">SmartSales</string>
     <string name="add_item">Add Item</string>
     <string name="add_new_item">Add New Item</string>
     <string name="welcome">Welcome</string>
@@ -10,13 +9,13 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password ?</string>
-    <string name="powered_by">powered by</string>
-    <string name="smartflix_technologies">Smartflix Technologies</string>
+    <string name="powered_by">Test</string>
+    <string name="smartflix_technologies">test</string>
 
 
     <!--this is google place api. Do not change-->
 
-    <string name="facebook_app_id">589846928277704</string> <!--this is facebook login key -->
+    <string name="facebook_app_id">324523453w456</string> <!--this is facebook login key -->
     <!--this is facebook login key -->
 
     <!-- Google test credentials -->

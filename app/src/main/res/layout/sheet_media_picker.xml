@@ -5,7 +5,7 @@
 
         <variable
             name="callback"
-            type="com.iunctainc.iuncta.app.di.base.sheet.MediaSheet.ClickListener" />
+            type="com.smart.sample.app.di.base.sheet.MediaSheet.ClickListener" />
     </data>
 
     <LinearLayout

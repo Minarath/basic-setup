@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:130473331715:android:8bee7db1912ed7e0199236",
         "android_client_info": {
-          "package_name": "com.smart.sales"
+          "package_name": "com.sample.app"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "130473331715-qbet70jsavoq1didajbje4qqdk5poc2o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.smart.sales",
+            "package_name": "com.sample.app",
             "certificate_hash": "a70121acbc916dd6620b3fecee537557db02c7f1"
           }
         },

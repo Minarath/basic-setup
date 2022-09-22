@@ -5,15 +5,15 @@
 
         <variable
             name="callback"
-            type="com.iunctainc.iuncta.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleCallback" />
+            type="com.smart.sample.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleCallback" />
 
         <variable
             name="holder"
-            type="com.iunctainc.iuncta.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleViewHolder" />
+            type="com.smart.sample.app.di.base.adapter.SimpleRecyclerViewAdapter.SimpleViewHolder" />
 
         <variable
             name="bean"
-            type="com.iunctainc.iuncta.app.di.base.dialog.ListDialog.Item" />
+            type="com.smart.sample.app.di.base.dialog.ListDialog.Item" />
     </data>
 
     <LinearLayout

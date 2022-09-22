@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dexter/Desktop/New folder (3)/iuncta-android-main/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/Dexter/Desktop/New folder (3)/iuncta-android-main/app/src/main/res/layout/activity_main.xml" value="0.35989583333333336" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable-xxhdpi/gray_strock.xml" value="0.37604166666666666" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable-xxhdpi/img_left_side.xml" value="0.37604166666666666" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable-xxhdpi/img_right_side.xml" value="0.37604166666666666" />
@@ -21,7 +23,7 @@
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/img_edit.xml" value="0.37604166666666666" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/red_strock.xml" value="0.37552083333333336" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/drawable/strock_dashboard.xml" value="0.37604166666666666" />
-        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_additem.xml" value="0.33" />
+        <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_additem.xml" value="0.35989583333333336" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_editprofile.xml" value="0.35989583333333336" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_login.xml" value="0.35989583333333336" />
         <entry key="..\:/projects/Iroid/iuncta-android-main/app/src/main/res/layout/activity_main.xml" value="0.33" />
