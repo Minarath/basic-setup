@@ -1,2 +1,1 @@
-# iuncta-android
-
+Basic Setup
